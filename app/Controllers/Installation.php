@@ -305,7 +305,7 @@ class Installation extends BaseController
     {
         try {
             $customer = $this->customerModel
-                ->select('customers.*, lokasi_server.name as branch_name, package_profiles.name as package_name, package_profiles.price as harga, areas.name as area_name')
+                ->select('customers.*, lokasi_server.name as branch_name, package_profiles.name as package_name, package_profiles.price as harga, areas.area_name')
                 ->join('lokasi_server', 'lokasi_server.id_lokasi = customers.id_lokasi_server', 'left')
                 ->join('package_profiles', 'package_profiles.id = customers.id_paket', 'left')
                 ->join('areas', 'areas.id = customers.area_id', 'left')
