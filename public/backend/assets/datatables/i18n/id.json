@@ -1,0 +1,181 @@
+{
+  "decimal": "",
+  "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
+  "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+  "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+  "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+  "infoPostFix": "",
+  "thousands": ".",
+  "lengthMenu": "Tampilkan _MENU_ entri",
+  "loadingRecords": "Sedang memuat...",
+  "processing": "Sedang memproses...",
+  "search": "Cari:",
+  "zeroRecords": "Tidak ditemukan data yang sesuai",
+  "paginate": {
+    "first": "Pertama",
+    "last": "Terakhir",
+    "next": "Selanjutnya",
+    "previous": "Sebelumnya"
+  },
+  "aria": {
+    "sortAscending": ": aktifkan untuk mengurutkan kolom ascending",
+    "sortDescending": ": aktifkan untuk mengurutkan kolom descending"
+  },
+  "autoFill": {
+    "cancel": "Batal",
+    "fill": "Isi semua sel dengan <i>%d</i>",
+    "fillHorizontal": "Isi sel secara horizontal",
+    "fillVertical": "Isi sel secara vertikal"
+  },
+  "buttons": {
+    "collection": "Koleksi",
+    "colvis": "Visibilitas Kolom",
+    "colvisRestore": "Kembalikan visibilitas",
+    "copy": "Salin",
+    "copyKeys": "Tekan ctrl atau u2318 + C untuk menyalin data tabel ke clipboard sistem. Untuk membatalkan, klik pesan ini atau tekan ESC.",
+    "copySuccess": {
+      "1": "1 baris disalin ke clipboard",
+      "_": "%d baris disalin ke clipboard"
+    },
+    "copyTitle": "Salin ke Clipboard",
+    "csv": "CSV",
+    "excel": "Excel",
+    "pageLength": {
+      "-1": "Tampilkan semua baris",
+      "_": "Tampilkan %d baris"
+    },
+    "pdf": "PDF",
+    "print": "Cetak"
+  },
+  "searchBuilder": {
+    "add": "Tambah Kondisi",
+    "button": {
+      "0": "Pencari",
+      "_": "Pencari (%d)"
+    },
+    "clearAll": "Bersihkan Semua",
+    "condition": "Kondisi",
+    "conditions": {
+      "date": {
+        "after": "Setelah",
+        "before": "Sebelum",
+        "between": "Diantara",
+        "empty": "Kosong",
+        "equals": "Sama dengan",
+        "not": "Tidak",
+        "notBetween": "Tidak diantara",
+        "notEmpty": "Tidak kosong"
+      },
+      "number": {
+        "between": "Diantara",
+        "empty": "Kosong",
+        "equals": "Sama dengan",
+        "gt": "Lebih besar dari",
+        "gte": "Lebih besar atau sama dengan",
+        "lt": "Lebih kecil dari",
+        "lte": "Lebih kecil atau sama dengan",
+        "not": "Tidak",
+        "notBetween": "Tidak diantara",
+        "notEmpty": "Tidak kosong"
+      },
+      "string": {
+        "contains": "Mengandung",
+        "empty": "Kosong",
+        "endsWith": "Diakhiri dengan",
+        "equals": "Sama dengan",
+        "not": "Tidak",
+        "notEmpty": "Tidak kosong",
+        "startsWith": "Dimulai dengan"
+      }
+    },
+    "data": "Data",
+    "deleteTitle": "Hapus aturan filter",
+    "leftTitle": "Kurangi indent kriteria",
+    "logicAnd": "Dan",
+    "logicOr": "Atau",
+    "rightTitle": "Tambah indent kriteria",
+    "title": {
+      "0": "Pencari",
+      "_": "Pencari (%d)"
+    },
+    "value": "Nilai"
+  },
+  "searchPanes": {
+    "clearMessage": "Bersihkan Semua",
+    "collapse": {
+      "0": "Panel Pencarian",
+      "_": "Panel Pencarian (%d)"
+    },
+    "count": "{total}",
+    "countFiltered": "{shown} ({total})",
+    "emptyPanes": "Tidak Ada Panel Pencarian",
+    "loadMessage": "Memuat Panel Pencarian",
+    "title": "Filter Aktif - %d"
+  },
+  "select": {
+    "cells": {
+      "1": "1 sel terpilih",
+      "_": "%d sel terpilih"
+    },
+    "columns": {
+      "1": "1 kolom terpilih",
+      "_": "%d kolom terpilih"
+    },
+    "rows": {
+      "1": "1 baris terpilih",
+      "_": "%d baris terpilih"
+    }
+  },
+  "datetime": {
+    "previous": "Sebelumnya",
+    "next": "Selanjutnya",
+    "hours": "Jam",
+    "minutes": "Menit",
+    "seconds": "Detik",
+    "unknown": "-",
+    "amPm": ["am", "pm"],
+    "months": {
+      "0": "Januari",
+      "1": "Februari",
+      "10": "November",
+      "11": "Desember",
+      "2": "Maret",
+      "3": "April",
+      "4": "Mei",
+      "5": "Juni",
+      "6": "Juli",
+      "7": "Agustus",
+      "8": "September",
+      "9": "Oktober"
+    },
+    "weekdays": ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+  },
+  "editor": {
+    "close": "Tutup",
+    "create": {
+      "button": "Tambah",
+      "title": "Tambah entri baru",
+      "submit": "Tambah"
+    },
+    "edit": {
+      "button": "Edit",
+      "title": "Edit entri",
+      "submit": "Perbarui"
+    },
+    "remove": {
+      "button": "Hapus",
+      "title": "Hapus",
+      "submit": "Hapus",
+      "confirm": {
+        "_": "Yakin ingin menghapus %d baris?",
+        "1": "Yakin ingin menghapus 1 baris?"
+      }
+    },
+    "multi": {
+      "title": "Beberapa Nilai",
+      "info": "Item yang dipilih mengandung nilai yang berbeda untuk input ini. Untuk mengedit dan mengatur semua item untuk input ini ke nilai yang sama, klik atau tekan di sini, jika tidak mereka akan mempertahankan nilai individual mereka.",
+      "restore": "Batalkan Perubahan",
+      "noMulti": "Input ini dapat diedit secara individu, tetapi bukan sebagai bagian dari grup."
+    }
+  }
+}

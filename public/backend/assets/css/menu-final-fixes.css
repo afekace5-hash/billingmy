@@ -1,0 +1,71 @@
+/* 
+ * Final menu fixes 
+ * These styles override any other styles to ensure the menu appears exactly as desired
+ */
+
+/* Ensure no shadows on dropdowns */
+.vertical-menu .menu-dropdown {
+  box-shadow: none !important;
+}
+
+/* Fix arrow position when menu is expanded */
+.nav-link[aria-expanded="true"] .submenu-indicator {
+  right: 1rem !important;
+  position: absolute !important;
+  transform: translateY(-50%) rotate(90deg) !important;
+  transform-origin: center !important;
+}
+
+/* Normal arrow position */
+.nav-link .submenu-indicator {
+  position: absolute !important;
+  right: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Force submenu indentation to align with main menu text */
+.vertical-menu .metismenu li .menu-link + .collapse .nav-link {
+  padding-left: 2.7rem !important;
+}
+
+/* Make bullet points align with text */
+.menu-dropdown .nav-sm .nav-link:before {
+  left: 1.5rem !important;
+}
+
+/* Override any third-party shadow styles */
+.mm-collapse,
+.menu-dropdown,
+.mm-collapse.show,
+.mm-collapse.collapsing {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* Ensure dropdowns stay open when they contain active submenu items */
+.vertical-menu .metismenu .collapse:has(.nav-link.active) {
+  display: block !important;
+}
+
+.vertical-menu .metismenu .nav-link[aria-expanded="true"]:has(+ .collapse .nav-link.active) {
+  color: var(--bs-primary) !important;
+}
+
+.vertical-menu .metismenu .nav-item:has(.collapse .nav-link.active) > .nav-link {
+  color: var(--bs-primary) !important;
+}
+
+/* Apply highlight to parent menu item of active submenu */
+.vertical-menu .metismenu .nav-item:has(> .collapse .nav-link.active) > .nav-link .submenu-indicator {
+  transform: translateY(-50%) rotate(90deg) !important;
+}
+
+/* Additional styles to ensure parent menus of active submenu items remain open */
+.metismenu .has-active-child > .nav-link {
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.metismenu .collapse.active-parent {
+  display: block !important;
+}

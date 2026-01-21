@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nav-layout="horizontal" data-nav-style="menu-click" data-menu-position="fixed" data-theme-mode="light">
+  <head>
+    <!-- Meta Data -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Bayar Internet | Billing sistem pembayaran internet murah hanya 50 ribu rupiah</title>
+    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
+    <meta name="Author" content="Spruko Technologies Private Limited" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/brand-logos/favicon.png" type="image/x-icon" />
+
+    <!-- Bootstrap Css -->
+    <link id="style" href="assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Style Css -->
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <link href="assets/css/paket.css" rel="stylesheet" />
+    <link href="assets/css/newstyle.css" rel="stylesheet" />
+
+    <!-- Icons Css -->
+    <link href="assets/css/icons.css" rel="stylesheet" />
+
+    <!-- Node Waves Css -->
+    <link href="assets/libs/node-waves/waves.min.css" rel="stylesheet" />
+
+    <!-- SwiperJS Css -->
+    <link rel="stylesheet" href="assets/libs/swiper/swiper-bundle.min.css" />
+
+    <!-- Color Picker Css -->
+    <link rel="stylesheet" href="assets/libs/flatpickr/flatpickr.min.css" />
+    <link rel="stylesheet" href="assets/libs/@simonwep/pickr/themes/nano.min.css" />
+
+    <!-- Choices Css -->
+    <link rel="stylesheet" href="assets/libs/choices.js/public/assets/styles/choices.min.css" />
+
+    <script>
+      if (localStorage.ynexlandingdarktheme) {
+        document.querySelector("html").setAttribute("data-theme-mode", "dark");
+      }
+      if (localStorage.ynexlandingrtl) {
+        document.querySelector("html").setAttribute("dir", "rtl");
+        document.querySelector("#style")?.setAttribute("href", "assets/libs/bootstrap/css/bootstrap.rtl.min.css");
+      }
+    </script>
+  </head>
+
+  <body class="landing-body">
+    <div class="landing-page-wrapper">
+      <!-- app-header -->
+      <header class="app-header">
+        <!-- Start::main-header-container -->
+        <div class="main-header-container container-fluid">
+          <!-- Start::header-content-left -->
+          <div class="header-content-left">
+            <!-- Start::header-element -->
+            <div class="header-element">
+              <div class="horizontal-logo">
+                <a href="index.html" class="header-logo">
+                  <img src="assets/images/brand-logos/difihome.png" alt="logo" class="toggle-logo" />
+                  <img src="assets/images/brand-logos/difihome.png" alt="logo" class="toggle-dark" />
+                </a>
+              </div>
+            </div>
+            <!-- End::header-element -->
+
+            <!-- Start::header-element -->
+            <div class="header-element">
+              <!-- Start::header-link -->
+              <a href="javascript:void(0);" class="sidemenu-toggle header-link" data-bs-toggle="sidebar">
+                <span class="open-toggle">
+                  <i class="ri-menu-3-line fs-20"></i>
+                </span>
+              </a>
+              <!-- End::header-link -->
+            </div>
+            <!-- End::header-element -->
+          </div>
+          <!-- End::header-content-left -->
+
+          <!-- Start::header-content-right -->
+          <div class="header-content-right">
+            <!-- Start::header-element -->
+            <div class="header-element align-items-center">
+              <!-- Start::header-link|switcher-icon -->
+              <div class="btn-list d-lg-none d-block">
+                <a href="sign-up-basic.html" class="btn btn-primary-light"> Sign Up </a>
+                <button class="btn btn-icon btn-success" data-bs-toggle="offcanvas" data-bs-target="#switcher-canvas">
+                  <i class="ri-settings-3-line"></i>
+                </button>
+              </div>
+              <!-- End::header-link|switcher-icon -->
+            </div>
+            <!-- End::header-element -->
+          </div>
+          <!-- End::header-content-right -->
+        </div>
+        <!-- End::main-header-container -->
+      </header>
+      <!-- /app-header -->
+
+      <!-- Start::app-sidebar -->
+      <aside class="app-sidebar sticky" id="sidebar">
+        <div class="container p-0">
+          <!-- Start::main-sidebar -->
+          <div class="main-sidebar">
+            <!-- Start::nav -->
+            <nav class="main-menu-container nav nav-pills sub-open">
+              <div class="landing-logo-container">
+                <div class="horizontal-logo">
+                  <a href="index.html" class="header-logo">
+                    <img src="assets/images/brand-logos/difihome.png" alt="logo" class="desktop-logo" />
+                    <img src="assets/images/brand-logos/difihome_white.png" alt="logo" class="desktop-white" />
+                  </a>
+                </div>
+              </div>
+              <div class="slide-left" id="slide-left">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
+              </div>
+              <ul class="main-menu">
+                <!-- Start::slide -->
+                <li class="slide">
+                  <a class="side-menu__item" href="#home">
+                    <span class="side-menu__label">Home</span>
+                  </a>
+                </li>
+                <!-- End::slide -->
+                <!-- Start::slide -->
+                <li class="slide">
+                  <a href="#about" class="side-menu__item">
+                    <span class="side-menu__label">About</span>
+                  </a>
+                </li>
+                <!-- End::slide -->
+                <!-- Start::slide -->
+                <!-- <li class="slide has-sub">
+                  <a href="javascript:void(0);" class="side-menu__item">
+                    <span class="side-menu__label me-2">More</span>
+                    <i class="fe fe-chevron-right side-menu__angle op-8"></i>
+                  </a>
+                  <ul class="slide-menu child1">
+                    <li class="slide">
+                      <a href="#statistics" class="side-menu__item">Statistics</a>
+                    </li>
+                    <li class="slide">
+                      <a href="#our-mission" class="side-menu__item">Our Mission</a>
+                    </li>
+                    <li class="slide">
+                      <a href="#testimonials" class="side-menu__item">Testimonials</a>
+                    </li>
+                    <li class="slide has-sub">
+                      <a href="javascript:void(0);" class="side-menu__item">Level-2 <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                      <ul class="slide-menu child2">
+                        <li class="slide">
+                          <a href="javascript:void(0);" class="side-menu__item">Level-2-1</a>
+                        </li>
+                        <li class="slide has-sub">
+                          <a href="javascript:void(0);" class="side-menu__item">Level-2-2 <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                          <ul class="slide-menu child3">
+                            <li class="slide">
+                              <a href="javascript:void(0);" class="side-menu__item">Level-2-2-1</a>
+                            </li>
+                            <li class="slide has-sub">
+                              <a href="javascript:void(0);" class="side-menu__item">Level-2-2-2</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li> -->
+                <!-- End::slide -->
+                <!-- Start::slide -->
+                <li class="slide">
+                  <a href="#features" class="side-menu__item">
+                    <span class="side-menu__label">Features</span>
+                  </a>
+                </li>
+                <!-- End::slide -->
+                <!-- Start::slide -->
+                <li class="slide">
+                  <a href="#testimonials" class="side-menu__item">
+                    <span class="side-menu__label">Clients</span>
+                  </a>
+                </li>
+                <!-- End::slide -->
+                <!-- Start::slide -->
+                <li class="slide">
+                  <a href="#team" class="side-menu__item">
+                    <span class="side-menu__label">Team</span>
+                  </a>
+                </li>
+                <!-- End::slide -->
+                <!-- Start::slide -->
+                <li class="slide">
+                  <a href="#pricing" class="side-menu__item">
+                    <span class="side-menu__label">Pricing</span>
+                  </a>
+                </li>
+                <!-- End::slide -->
+                <!-- Start::slide -->
+                <li class="slide">
+                  <a href="#faq" class="side-menu__item">
+                    <span class="side-menu__label">Faq's</span>
+                  </a>
+                </li>
+                <!-- End::slide -->
+                <!-- Start::slide -->
+                <li class="slide">
+                  <a href="#contact" class="side-menu__item">
+                    <span class="side-menu__label">Contact</span>
+                  </a>
+                </li>
+                <!-- End::slide -->
+              </ul>
+              <div class="slide-right" id="slide-right">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+              </div>
+              <div class="d-lg-flex d-none">
+                <div class="btn-list d-lg-flex d-none mt-lg-2 mt-xl-0 mt-0">
+                  <a href="https://client.difihome.my.id" class="btn btn-wave btn-success" target="_blank" rel="noopener"> <i class="bx bx-user"></i> Client Area </a>
+                  <a href="https://client.difihome.my.id" class="btn btn-wave btn-danger-light" target="_blank" rel="noopener"> <i class="bx bx-user"></i> Berlangganan</a>
+                </div>
+              </div>
+            </nav>
+            <!-- End::nav -->
+          </div>
+          <!-- End::main-sidebar -->
+        </div>
+      </aside>
+      <!-- End::app-sidebar -->
+
+      <!-- Start::app-content -->
+      <div class="main-content landing-main">
+        <!-- Start:: Section-1 -->
+        <div class="landing-banner" id="home">
+          <section class="section">
+            <div class="container main-banner-container">
+              <div class="swiper banner-swiper">
+                <div class="swiper-wrapper">
+                  <!-- Slide 1 -->
+                  <div class="swiper-slide">
+                    <div class="row align-items-center">
+                      <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-8">
+                        <div class="py-lg-5">
+                          <div class="mb-3">
+                            <h5 class="fw-semibold text-fixed-white op-9">Bayar Internet</h5>
+                          </div>
+                          <p class="landing-banner-heading mb-3">Sistem billing internet terlengkap dengan sistem konferhensif <span class="text-secondary"></span></p>
+                          <div class="fs-16 mb-5 text-fixed-white op-7">dan terjangkau untuk mengelola pelanggan internet anda</div>
+                          <a href="index.html" class="m-1 btn btn-primary">
+                            Get Started
+                            <i class="ri-eye-line ms-2 align-middle"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-4">
+                        <div class="text-end landing-main-image landing-heading-img">
+                          <img src="assets/images/media/landing/landing1.png" alt="" class="img-fluid" style="max-width: 420px; width: 100%; height: auto; object-fit: contain" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Slide 2 (example, duplicate and edit as needed) -->
+                  <div class="swiper-slide">
+                    <div class="row align-items-center">
+                      <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-8">
+                        <div class="py-lg-5">
+                          <div class="mb-3">
+                            <h5 class="fw-semibold text-fixed-white op-9">Internet Cepat & Unlimited</h5>
+                          </div>
+                          <p class="landing-banner-heading mb-3">Layanan internet stabil, support 24/7, dan harga terjangkau <span class="text-secondary"></span></p>
+                          <div class="fs-16 mb-5 text-fixed-white op-7">Solusi terbaik untuk kebutuhan digital Anda</div>
+                          <a href="#about" class="m-1 btn btn-success">
+                            Pelajari Lebih Lanjut
+                            <i class="ri-arrow-right-line ms-2 align-middle"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-4">
+                        <div class="text-end landing-main-image landing-heading-img">
+                          <img src="assets/images/media/landing/3.png" alt="" class="img-fluid" style="max-width: 420px; width: 100%; height: auto; object-fit: contain" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Add more slides as needed -->
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- End:: Section-1 -->
+
+        <!-- Start:: Section-2 -->
+        <section class="section section-bg" id="statistics">
+          <div class="container text-center position-relative">
+            <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">STATISTICS</span></p>
+            <h3 class="fw-semibold mb-2">Dipercaya oleh Ribuan Pelanggan Internet</h3>
+            <div class="row justify-content-center">
+              <div class="col-xl-7">
+                <p class="text-muted fs-15 mb-5 fw-normal">Sistem billing dan manajemen ISP yang memudahkan pengelolaan pelanggan, tagihan, dan pembayaran dengan fitur otomasi lengkap.</p>
+              </div>
+            </div>
+            <div class="row g-2 justify-content-center">
+              <div class="col-xl-12">
+                <div class="row justify-content-evenly">
+                  <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                    <div class="p-3 text-center rounded-2 bg-white border">
+                      <span class="mb-3 avatar avatar-lg avatar-rounded bg-primary-transparent">
+                        <i class="fs-24 bx bx-spreadsheet"></i>
+                      </span>
+                      <h3 class="fw-semibold mb-0 text-dark">5000+</h3>
+                      <p class="mb-1 fs-14 op-7 text-muted">Pelanggan Aktif</p>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                    <div class="p-3 text-center rounded-2 bg-white border">
+                      <span class="mb-3 avatar avatar-lg avatar-rounded bg-primary-transparent">
+                        <i class="fs-24 bx bx-user-plus"></i>
+                      </span>
+                      <h3 class="fw-semibold mb-0 text-dark">50+</h3>
+                      <p class="mb-1 fs-14 op-7 text-muted">ISP Partner</p>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                    <div class="p-3 text-center rounded-2 bg-white border">
+                      <span class="mb-3 avatar avatar-lg avatar-rounded bg-primary-transparent">
+                        <i class="fs-24 bx bx-money"></i>
+                      </span>
+                      <h3 class="fw-semibold mb-0 text-dark">100K+</h3>
+                      <p class="mb-1 fs-14 op-7 text-muted">Invoice Terproses</p>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                    <div class="p-3 text-center rounded-2 bg-white border">
+                      <span class="mb-3 avatar avatar-lg avatar-rounded bg-primary-transparent">
+                        <i class="fs-24 bx bx-user-circle"></i>
+                      </span>
+                      <h3 class="fw-semibold mb-0 text-dark">854</h3>
+                      <p class="mb-1 fs-14 op-7 text-muted">Employees</p>
+                    </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                    <div class="p-3 text-center rounded-2 bg-white border">
+                      <span class="mb-3 avatar avatar-lg avatar-rounded bg-primary-transparent">
+                        <i class="fs-24 bx bx-calendar"></i>
+                      </span>
+                      <h3 class="fw-semibold mb-0 text-dark">5+</h3>
+                      <p class="mb-1 fs-14 op-7 text-muted">Years of Experience</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-2 -->
+
+        <!-- Start:: Section-3 -->
+        <section class="section" id="about">
+          <div class="container text-center">
+            <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">CUSTOMIZATION</span></p>
+            <h3 class="fw-semibold mb-2">Terkoneksi Dengan Internet yang Unlimited & Cepat</h3>
+            <div class="row justify-content-center">
+              <div class="col-xl-7">
+                <p class="text-muted fs-15 mb-3 fw-normal">Kami provider yang memahami kebutuhan Anda. Kini bukan hanya internet yang unlimited serta cepat tapi juga dengan fitur yang lengkap dan harga yang terjangkau.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center align-items-center">
+            <div class="col-xxl-5 col-xl-5 col-lg-5 customize-image text-center">
+              <div class="text-lg-end">
+                <img src="assets/images/media/landing/landing2.jpeg" alt="" class="img-fluid" />
+              </div>
+            </div>
+            <div class="col-xxl-5 col-xl-5 col-lg-5 pt-5 pb-0 px-lg-2 px-5 text-start">
+              <h5 class="text-lg-start fw-semibold mb-0">Optimalkan Pengalaman Internet Anda</h5>
+              <p class="text-muted">Tingkatkan pengalaman Internet Anda dengan koneksi yang lebih cepat dan stabil. Dengan mengoptimalkan pengaturan pada teknologi jaringan.</p>
+              <div class="row">
+                <div class="col-12 col-md-12">
+                  <div class="d-flex">
+                    <span>
+                      <i class="bx bxs-badge-check text-primary fs-18"></i>
+                    </span>
+                    <div class="ms-2">
+                      <h6 class="fw-semibold mb-0">Reliabel Technician.</h6>
+                      <p class="text-muted">Pemasangan dilakukan oleh tenaga ahli yang profesional</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12">
+                  <div class="d-flex">
+                    <span>
+                      <i class="bx bxs-badge-check text-primary fs-18"></i>
+                    </span>
+                    <div class="ms-2">
+                      <h6 class="fw-semibold mb-0">24/7 Support</h6>
+                      <p class="text-muted">Layanan dukungan pelanggan tersedia sepanjang waktu untuk membantu Anda dengan segala kebutuhan teknis.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12">
+                  <div class="d-flex">
+                    <span>
+                      <i class="bx bxs-badge-check text-primary fs-18"></i>
+                    </span>
+                    <div class="ms-2">
+                      <h6 class="fw-semibold mb-0">100% Fiber Optic</h6>
+                      <p class="text-muted">Jaringan kami menggunakan teknologi fiber optic untuk memastikan kecepatan dan kestabilan koneksi yang optimal.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-3 -->
+
+        <!-- Start:: Section-4 -->
+        <section class="section section-bg" id="our-mission">
+          <div class="container text-center">
+            <p class="fs-15 fw-semibold text-success mb-1"><span class="landing-section-heading">Fitur Unggulan Billing System</span></p>
+            <h2 class="fw-semibold fs-25 mb-2">Semua yang Anda butuhkan untuk mengelola ISP secara profesional</h2>
+            <div class="row justify-content-center mb-5">
+              <div class="col-xl-7">
+                <p class="text-muted fs-15 mb-5 fw-normal">Rangkaian fitur yang dirancang khusus untuk operasional RTRW Net dan ISP kecil-menengah berdasarkan pengalaman implementasi</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card custom-card text-start landing-missions">
+                  <div class="card-body">
+                    <div class="align-items-top">
+                      <div class="mb-2">
+                        <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                          <i class="bx bx-receipt fs-25"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <h6 class="fw-semibold mb-1">Billing Otomatis</h6>
+                        <p class="mb-0 text-muted">Generate tagihan bulanan, pro‑rata, jatuh tempo, dan histori pembayaran.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card custom-card text-start landing-missions">
+                  <div class="card-body">
+                    <div class="align-items-top">
+                      <div class="mb-2">
+                        <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                          <i class="ri-whatsapp-line fs-25"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <h6 class="fw-semibold mb-1">WhatsApp Gateway</h6>
+                        <p class="mb-0 text-muted">Kirim invoice, pengingat, dan notifikasi status layanan otomatis.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card custom-card text-start landing-missions">
+                  <div class="card-body">
+                    <div class="align-items-top">
+                      <div class="mb-2">
+                        <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                          <i class="ri-whatsapp-line fs-25"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <h6 class="fw-semibold mb-1">Integrasi WA Official</h6>
+                        <p class="mb-0 text-muted">Terhubung dengan partner resmi seperti Mobichat untuk kanal WhatsApp Business API yang compliant.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card custom-card text-start landing-missions">
+                  <div class="card-body">
+                    <div class="align-items-top">
+                      <div class="mb-2">
+                        <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                          <i class="bx bx-wallet-alt fs-25"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <h6 class="fw-semibold mb-1">Payment Gateway</h6>
+                        <p class="mb-0 text-muted">Terima pembayaran dengan mudah melalui berbagai metode yang aman dan terpercaya.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card custom-card text-start landing-missions">
+                  <div class="card-body">
+                    <div class="align-items-top">
+                      <div class="mb-2">
+                        <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                          <i class="ri-router-line fs-25"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <h6 class="fw-semibold mb-1">Integrasi Mikrotik API</h6>
+                        <p class="mb-0 text-muted">Multi‑router, unlimited device (sesuai paket), otomatis isolir.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card custom-card text-start landing-missions">
+                  <div class="card-body">
+                    <div class="align-items-top">
+                      <div class="mb-2">
+                        <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                          <i class="ri-customer-service-2-line fs-25"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <h6 class="fw-semibold mb-1">Layanan Pelanggan 24/7</h6>
+                        <p class="mb-0 text-muted">Dukungan pelanggan yang siap membantu Anda kapan saja melalui berbagai saluran komunikasi.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card custom-card text-start landing-missions">
+                  <div class="card-body">
+                    <div class="align-items-top">
+                      <div class="mb-2">
+                        <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                          <i class="ri-user-star-line fs-25"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <h6 class="fw-semibold mb-1">Manajemen Pelanggan</h6>
+                        <p class="mb-0 text-muted">Kelola data pelanggan dengan mudah, termasuk riwayat layanan dan pembayaran.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card custom-card text-start landing-missions">
+                  <div class="card-body">
+                    <div class="align-items-top">
+                      <div class="mb-2">
+                        <span class="avatar avatar-lg avatar-rounded bg-primary-transparent">
+                          <i class="ri-refresh-line fs-25"></i>
+                        </span>
+                      </div>
+                      <div>
+                        <h6 class="fw-semibold mb-1">Fully Responsive</h6>
+                        <p class="mb-0 text-muted">Tampilan yang optimal di berbagai perangkat, mulai dari desktop hingga smartphone.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-4 -->
+
+        <!-- Start:: Section-5 -->
+        <section class="section landing-Features" id="features">
+          <div class="container text-center">
+            <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">Supported Network Vendors</span></p>
+            <h2 class="fw-semibold mb-2 text-fixed-white">Jaringan Didukung oleh Vendor Terpercaya</h2>
+            <div class="row justify-content-center">
+              <div class="col-xl-7">
+                <p class="text-fixed-white op-8 fs-15 mb-3 fw-normal">Sistem billing ini mendukung integrasi dengan berbagai perangkat jaringan dari vendor ternama.</p>
+              </div>
+            </div>
+            <div class="text-start">
+              <div class="justify-content-center">
+                <div class="feature-logos mt-sm-5 flex-wrap d-flex flex-wrap justify-content-center">
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="assets/images/media/landing/network/mikrotik.png" alt="Mikrotik" class="featur-icon" style="height: 64px; object-fit: contain; background: #fff; border-radius: 16px; padding: 18px" />
+                    <h5 class="mt-3 text-fixed-white">Mikrotik</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="assets/images/media/landing/network/cisco.png" alt="Cisco" class="featur-icon" style="height: 64px; object-fit: contain; background: #fff; border-radius: 16px; padding: 18px" />
+                    <h5 class="mt-3 text-fixed-white">Cisco</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="assets/images/media/landing/network/tplink.png" alt="TP-Link" class="featur-icon" style="height: 64px; object-fit: contain; background: #fff; border-radius: 16px; padding: 18px" />
+                    <h5 class="mt-3 text-fixed-white">TP-Link</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="assets/images/media/landing/network/ubiquiti.png" alt="Ubiquiti" class="featur-icon" style="height: 64px; object-fit: contain; background: #fff; border-radius: 16px; padding: 18px" />
+                    <h5 class="mt-3 text-fixed-white">Ubiquiti</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="assets/images/media/landing/network/huawei.png" alt="Huawei" class="featur-icon" style="height: 64px; object-fit: contain; background: #fff; border-radius: 16px; padding: 18px" />
+                    <h5 class="mt-3 text-fixed-white">Huawei</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="assets/images/media/landing/network/ruijie.png" alt="Ruijie" class="featur-icon" style="height: 64px; object-fit: contain; background: #fff; border-radius: 16px; padding: 18px" />
+                    <h5 class="mt-3 text-fixed-white">Ruijie</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination mt-4"></div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-5 -->
+
+        <!-- Start:: Section-6 -->
+        <section class="section landing-testimonials section-bg" id="testimonials">
+          <div class="container text-center">
+            <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">TESTIMONIALS</span></p>
+            <h3 class="fw-semibold mb-2">Apa Kata Pelanggan Kami?</h3>
+            <div class="row justify-content-center">
+              <div class="col-xl-7">
+                <p class="text-muted fs-15 mb-5 fw-normal">Some of the reviews our clients gave which brings motivation to work for future projects.</p>
+              </div>
+            </div>
+            <div class="swiper pagination-dynamic text-start">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="row">
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/15.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Budi Santoso</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">Pemilik RT/RW Net</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">"Sistem billing ini sangat membantu saya mengelola pelanggan dan pembayaran. Supportnya juga responsif!"</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>2 minggu lalu</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Budi Santoso</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/4.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Siti Rahmawati</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">Manajer Operasional ISP</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">"Fitur WhatsApp Gateway sangat memudahkan pengiriman tagihan dan notifikasi ke pelanggan. Recommended!"</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>1 bulan lalu</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Siti Rahmawati</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/2.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Agus Pratama</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">Teknisi Jaringan</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">"Integrasi Mikrotik API sangat lancar, proses isolir otomatis berjalan tanpa kendala. Terima kasih!"</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-line"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>3 minggu lalu</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Agus Pratama</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="row">
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/10.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Jhonson Smith</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">CHIEF SECRETARY MBIO</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">- Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio --</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>16 hrs ago</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Jhonson Smith</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/12.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Dwayne Stort</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">CEO ARMEDILLO</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">- Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio --</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-line"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>22 days ago</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Dwayne Stort</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/3.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Jasmine Kova</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">AGGENT AMIO</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">- Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio --</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>26 days ago</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Jasmine Kova</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="row">
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/16.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Dolph MR</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">CEO MR BRAND</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">- Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio --</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>1 month ago</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Dolph MR</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/5.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Brenda Simpson</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">CEO AIBMO</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">- Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio --</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>1 month ago</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Brenda Simpson</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <div class="card custom-card testimonial-card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-3">
+                            <span class="avatar avatar-md avatar-rounded me-3">
+                              <img src="assets/images/faces/7.jpg" alt="" />
+                            </span>
+                            <div>
+                              <p class="mb-0 fw-semibold fs-14">Julia Sams</p>
+                              <p class="mb-0 fs-10 fw-semibold text-muted">CHIEF SECRETARY BHOL</p>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <span class="text-muted">- Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio --</span>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <span class="text-muted">Rating : </span>
+                              <span class="text-warning d-block ms-1">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                              </span>
+                            </div>
+                            <div class="float-end fs-12 fw-semibold text-muted text-end">
+                              <span>2 month ago</span>
+                              <span class="d-block fw-normal fs-12 text-success"><i>Julia Sams</i></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination mt-4"></div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-6 -->
+
+        <!-- Start:: Section-8 -->
+        <section class="section" id="pricing">
+          <div class="container text-center" style="border: none; box-shadow: none">
+            <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">PAKET INTERNET</span></p>
+            <h3 class="fw-semibold mb-2">Paket Internet Terbaik untuk Kebutuhan Anda</h3>
+            <div class="row justify-content-center">
+              <div class="col-xl-9">
+                <p class="text-muted fs-15 mb-5 fw-normal">Pilih paket internet sesuai kebutuhan Anda dengan harga terjangkau dan kecepatan yang stabil.</p>
+              </div>
+            </div>
+            <div class="col-xl-12">
+              <div class="row" id="packages-container">
+                <!-- Packages will be loaded here dynamically -->
+                <div class="card custom-card overflow-hidden">
+                  <div class="card-body p-0">
+                    <div class="px-1 py-2 bg-success op-3"></div>
+                    <div class="p-4">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="fs-18 fw-semibold">Free</div>
+                        <div>
+                          <span class="badge bg-success-transparent">For Indivudials</span>
+                        </div>
+                      </div>
+                      <div class="fs-25 fw-bold mb-1">$0<sub class="text-muted fw-semibold fs-11 ms-1">/ Per Month</sub></div>
+                      <div class="mb-1 text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quos debitis aliquam .</div>
+                      <div class="fs-12 mb-3"><u>Billed Monthly</u></div>
+                      <ul class="list-unstyled mb-0">
+                        <li class="d-flex align-items-center mb-3">
+                          <span class="me-2">
+                            <i class="ri-checkbox-circle-line fs-15 text-success"></i>
+                          </span>
+                          <span> <strong class="me-1">2 Free</strong>Websites </span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                          <span class="me-2">
+                            <i class="ri-checkbox-circle-line fs-15 text-success"></i>
+                          </span>
+                          <span> <strong class="me-1">1 GB</strong>Hard disk storage </span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                          <span class="me-2">
+                            <i class="ri-checkbox-circle-line fs-15 text-muted op-3"></i>
+                          </span>
+                          <span> <strong class="me-1">1 Year</strong>Email support </span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                          <span class="me-2">
+                            <i class="ri-checkbox-circle-line fs-15 text-muted op-3"></i>
+                          </span>
+                          <span> <strong class="me-1">2</strong>Licenses </span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                          <span class="me-2">
+                            <i class="ri-checkbox-circle-line fs-15 text-muted op-3"></i>
+                          </span>
+                          <span> Custom SEO optimizataion </span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                          <span class="me-2">
+                            <i class="ri-checkbox-circle-line fs-15 text-muted op-3"></i>
+                          </span>
+                          <span> Chat Support </span>
+                        </li>
+                        <li class="d-grid">
+                          <button class="btn btn-light btn-wave waves-effect waves-light">Choose Plan</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-8 -->
+
+        <script>
+          // Load internet packages from API
+          document.addEventListener("DOMContentLoaded", function () {
+            loadPackages();
+          });
+
+          function loadPackages() {
+            const container = document.getElementById("packages-container");
+
+            // Show loading
+            container.innerHTML = '<div class="col-12"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+
+            // Fetch packages from API
+            fetch("/api/landing/packages")
+              .then((response) => response.json())
+              .then((result) => {
+                if (result.success && result.data.length > 0) {
+                  displayPackages(result.data);
+                } else {
+                  container.innerHTML = '<div class="col-12"><p class="text-muted">Tidak ada paket yang tersedia saat ini.</p></div>';
+                }
+              })
+              .catch((error) => {
+                console.error("Error loading packages:", error);
+                container.innerHTML = '<div class="col-12"><p class="text-danger">Gagal memuat data paket internet.</p></div>';
+              });
+          }
+
+          function displayPackages(packages) {
+            const container = document.getElementById("packages-container");
+            let html = "";
+
+            packages.forEach((pkg, index) => {
+              const isHighlighted = index === Math.floor(packages.length / 2); // Highlight middle package
+              const borderClass = isHighlighted ? "border border-primary" : "";
+              const headerColor = isHighlighted ? "bg-primary op-5" : "bg-success op-3";
+              const badgeColor = isHighlighted ? "bg-primary-transparent" : "bg-success-transparent";
+              const btnClass = isHighlighted ? "btn-primary" : "btn-light";
+
+              html += `
+            <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card overflow-hidden ${borderClass}">
+                    <div class="card-body p-0">
+                        <div class="px-1 py-2 ${headerColor}"></div>
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="fs-18 fw-semibold">${pkg.name}</div>
+                                <div>
+                                    <span class="badge ${badgeColor}">
+                                        ${pkg.validity_period} Hari
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="fs-25 fw-bold mb-1">Rp ${formatCurrency(pkg.price)}<sub class="text-muted fw-semibold fs-11 ms-1">/ Bulan</sub></div>
+                            <div class="mb-1 text-muted">${pkg.description || "Paket internet untuk kebutuhan harian Anda"}</div>
+                            <div class="fs-12 mb-3"><u>Pembayaran Bulanan</u></div>
+                            <ul class="list-unstyled mb-0">
+                                ${
+                                  pkg.bandwidth_profile
+                                    ? `
+                                <li class="d-flex align-items-center mb-3">
+                                    <span class="me-2">
+                                        <i class="ri-checkbox-circle-line fs-15 text-success"></i>
+                                    </span>
+                                    <span>
+                                        Bandwidth: <strong>${pkg.bandwidth_profile}</strong>
+                                    </span>
+                                </li>
+                                `
+                                    : ""
+                                }
+                                ${
+                                  pkg.group_profile
+                                    ? `
+                                <li class="d-flex align-items-center mb-3">
+                                    <span class="me-2">
+                                        <i class="ri-checkbox-circle-line fs-15 text-success"></i>
+                                    </span>
+                                    <span>
+                                        Profil: <strong>${pkg.group_profile}</strong>
+                                    </span>
+                                </li>
+                                `
+                                    : ""
+                                }
+                                <li class="d-flex align-items-center mb-3">
+                                    <span class="me-2">
+                                        <i class="ri-checkbox-circle-line fs-15 text-success"></i>
+                                    </span>
+                                    <span>
+                                        Periode: <strong>${pkg.validity_period} Hari</strong>
+                                    </span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3">
+                                    <span class="me-2">
+                                        <i class="ri-checkbox-circle-line fs-15 text-success"></i>
+                                    </span>
+                                    <span>
+                                        Support 24/7
+                                    </span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3">
+                                    <span class="me-2">
+                                        <i class="ri-checkbox-circle-line fs-15 text-success"></i>
+                                    </span>
+                                    <span>
+                                        Koneksi Stabil
+                                    </span>
+                                </li>
+                                <li class="d-grid">
+                                    <button class="btn ${btnClass} btn-wave waves-effect waves-light" onclick="selectPackage(${pkg.id}, '${pkg.name}')">Pilih Paket</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+            });
+
+            container.innerHTML = html;
+          }
+
+          function formatCurrency(amount) {
+            return new Intl.NumberFormat("id-ID").format(amount);
+          }
+
+          function selectPackage(id, name) {
+            alert(`Anda memilih paket: ${name}\n\nHubungi customer service untuk berlangganan.`);
+            // You can redirect to registration form or contact page
+            // window.location.href = '/register?package=' + id;
+          }
+
+          function sendContactMessage() {
+            const name = document.getElementById("contact-address-name").value;
+            const phone = document.getElementById("contact-address-phone").value;
+            const address = document.getElementById("contact-address-address").value;
+            const message = document.getElementById("contact-address-message").value;
+
+            if (!name || !phone) {
+              alert("Mohon isi nama dan nomor WhatsApp Anda");
+              return;
+            }
+
+            // Format WhatsApp message
+            const waMessage = `Halo, saya ingin bertanya tentang layanan internet.%0A%0ANama: ${encodeURIComponent(name)}%0ANo. WhatsApp: ${encodeURIComponent(phone)}%0AAlamat: ${encodeURIComponent(
+              address || "-"
+            )}%0A%0APesan:%0A${encodeURIComponent(message || "Saya ingin informasi lebih lanjut tentang paket internet")}`;
+
+            // Open WhatsApp
+            window.open(`https://wa.me/6285183112127?text=${waMessage}`, "_blank");
+          }
+        </script>
+
+        <!-- Start:: Section-9 -->
+        <section class="section section-bg" id="faq">
+          <div class="container text-center">
+            <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">F.A.Q</span></p>
+            <h3 class="fw-semibold mb-2">Pertanyaan yang Sering Diajukan</h3>
+            <div class="row justify-content-center">
+              <div class="col-xl-7">
+                <p class="text-muted fs-15 mb-5 fw-normal">Kami telah merangkum pertanyaan yang sering diajukan seputar layanan internet kami untuk membantu Anda.</p>
+              </div>
+            </div>
+            <div class="row text-start">
+              <div class="col-xl-12">
+                <div class="row gy-2">
+                  <div class="col-xl-6">
+                    <div class="accordion accordion-customicon1 accordion-primary accordions-items-seperate" id="accordionFAQ1">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon1One">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1One" aria-expanded="true" aria-controls="collapsecustomicon1One">
+                            Bagaimana cara berlangganan internet?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon1One" class="accordion-collapse collapse show" aria-labelledby="headingcustomicon1One" data-bs-parent="#accordionFAQ1">
+                          <div class="accordion-body">
+                            Anda dapat berlangganan dengan <strong>menghubungi customer service kami</strong> melalui WhatsApp, telepon, atau langsung mengunjungi kantor kami. Tim kami akan membantu Anda memilih paket yang sesuai dengan
+                            kebutuhan dan melakukan survei lokasi untuk memastikan kesiapan pemasangan.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon1Two">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Two" aria-expanded="false" aria-controls="collapsecustomicon1Two">
+                            Berapa lama proses instalasi internet?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon1Two" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Two" data-bs-parent="#accordionFAQ1">
+                          <div class="accordion-body">
+                            Proses instalasi biasanya memakan waktu <strong>1-3 hari kerja</strong> setelah survei lokasi dan pembayaran selesai. Waktu instalasi dapat bervariasi tergantung pada kondisi lokasi dan ketersediaan infrastruktur
+                            jaringan di area Anda.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon1Three">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Three" aria-expanded="false" aria-controls="collapsecustomicon1Three">
+                            Apa saja metode pembayaran yang tersedia?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon1Three" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Three" data-bs-parent="#accordionFAQ1">
+                          <div class="accordion-body">
+                            Kami menyediakan berbagai metode pembayaran untuk kemudahan Anda, antara lain: <strong>Transfer Bank, Virtual Account, E-Wallet (GoPay, OVO, Dana), QRIS, dan Minimarket</strong>. Anda akan menerima notifikasi
+                            tagihan melalui WhatsApp setiap bulannya.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon1Four">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Four" aria-expanded="false" aria-controls="collapsecustomicon1Four">
+                            Bagaimana jika terjadi gangguan koneksi?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon1Four" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Four" data-bs-parent="#accordionFAQ1">
+                          <div class="accordion-body">
+                            Kami menyediakan <strong>layanan customer support 24/7</strong>. Jika terjadi gangguan, Anda dapat langsung menghubungi tim technical support kami melalui WhatsApp atau telepon. Tim kami akan segera melakukan
+                            pengecekan dan perbaikan untuk memastikan koneksi Anda kembali normal.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon1Five">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Five" aria-expanded="false" aria-controls="collapsecustomicon1Five">
+                            Apakah ada biaya instalasi?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon1Five" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Five" data-bs-parent="#accordionFAQ1">
+                          <div class="accordion-body">
+                            Biaya instalasi <strong>berbeda-beda tergantung paket yang dipilih dan jarak lokasi</strong>. Untuk beberapa paket tertentu, kami memberikan promo gratis biaya instalasi. Silakan hubungi customer service kami
+                            untuk informasi detail mengenai biaya instalasi di lokasi Anda.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon1Six">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Six" aria-expanded="false" aria-controls="collapsecustomicon1Six">
+                            Apakah internet unlimited tanpa FUP?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon1Six" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Six" data-bs-parent="#accordionFAQ1">
+                          <div class="accordion-body">
+                            Ya, semua paket internet kami adalah <strong>unlimited tanpa batasan kuota (FUP)</strong>. Anda dapat menggunakan internet sepuasnya tanpa khawatir kehabisan kuota atau penurunan kecepatan. Kecepatan yang Anda
+                            dapatkan sesuai dengan paket yang dipilih.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="accordion accordion-customicon1 accordion-primary accordions-items-seperate" id="accordionFAQ2">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon2Five">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon2Five" aria-expanded="false" aria-controls="collapsecustomicon2Five">
+                            Apakah bisa upgrade atau downgrade paket?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon2Five" class="accordion-collapse collapse" aria-labelledby="headingcustomicon2Five" data-bs-parent="#accordionFAQ2">
+                          <div class="accordion-body">
+                            Tentu saja! Anda dapat <strong>upgrade atau downgrade paket kapan saja</strong> sesuai dengan kebutuhan Anda. Silakan hubungi customer service kami minimal 3 hari sebelum tanggal perpanjangan untuk melakukan
+                            perubahan paket.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon2Six">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon2Six" aria-expanded="false" aria-controls="collapsecustomicon2Six">
+                            Apa yang terjadi jika telat bayar?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon2Six" class="accordion-collapse collapse" aria-labelledby="headingcustomicon2Six" data-bs-parent="#accordionFAQ2">
+                          <div class="accordion-body">
+                            Jika pembayaran melewati tanggal jatuh tempo, akan ada <strong>masa tenggang selama 3 hari</strong>. Setelah masa tenggang habis, koneksi internet akan diisolir (diputus sementara) sampai pembayaran dilakukan.
+                            Koneksi akan aktif kembali otomatis setelah pembayaran dikonfirmasi.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon2One">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon2One" aria-expanded="true" aria-controls="collapsecustomicon2One">
+                            Apakah area saya sudah terjangkau?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon2One" class="accordion-collapse collapse" aria-labelledby="headingcustomicon2One" data-bs-parent="#accordionFAQ2">
+                          <div class="accordion-body">
+                            Untuk mengetahui apakah area Anda sudah terjangkau layanan kami, silakan <strong>hubungi customer service</strong> dan berikan informasi alamat lengkap Anda. Tim kami akan melakukan pengecekan coverage area dan
+                            melakukan survei lokasi jika diperlukan.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon2Two">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon2Two" aria-expanded="false" aria-controls="collapsecustomicon2Two">
+                            Perangkat apa saja yang disediakan?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon2Two" class="accordion-collapse collapse" aria-labelledby="headingcustomicon2Two" data-bs-parent="#accordionFAQ2">
+                          <div class="accordion-body">
+                            Kami menyediakan <strong>semua peralatan yang diperlukan</strong> termasuk kabel fiber optic, ONT/modem, dan router WiFi. Peralatan ini akan dipasang oleh teknisi profesional kami saat instalasi. Anda tidak perlu
+                            membeli peralatan tambahan.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon2Three">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon2Three" aria-expanded="false" aria-controls="collapsecustomicon2Three">
+                            Bagaimana cara cek tagihan dan riwayat pembayaran?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon2Three" class="accordion-collapse collapse" aria-labelledby="headingcustomicon2Three" data-bs-parent="#accordionFAQ2">
+                          <div class="accordion-body">
+                            Anda dapat <strong>cek tagihan dan riwayat pembayaran melalui portal customer</strong> yang dapat diakses 24/7. Selain itu, tagihan bulanan juga akan dikirimkan otomatis ke WhatsApp Anda setiap bulan. Anda juga
+                            bisa menghubungi customer service untuk informasi tagihan.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingcustomicon2Four">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon2Four" aria-expanded="false" aria-controls="collapsecustomicon2Four">
+                            Bagaimana prosedur berhenti berlangganan?
+                          </button>
+                        </h2>
+                        <div id="collapsecustomicon2Four" class="accordion-collapse collapse show" aria-labelledby="headingcustomicon2Four" data-bs-parent="#accordionFAQ2">
+                          <div class="accordion-body">
+                            Jika Anda ingin berhenti berlangganan, silakan <strong>informasikan ke customer service kami minimal 7 hari sebelum tanggal perpanjangan</strong>. Teknisi kami akan melakukan pencabutan perangkat di lokasi Anda.
+                            Tidak ada denda pembatalan, namun biaya yang sudah dibayarkan tidak dapat dikembalikan.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-9 -->
+
+        <!-- Start:: Section-10 -->
+        <section class="section" id="contact">
+          <div class="container text-center">
+            <p class="fs-12 fw-semibold text-success mb-1"><span class="landing-section-heading">HUBUNGI KAMI</span></p>
+            <h3 class="fw-semibold mb-2">Ada Pertanyaan? Kami Siap Membantu Anda</h3>
+            <div class="row justify-content-center">
+              <div class="col-xl-9">
+                <p class="text-muted fs-15 mb-5 fw-normal">Hubungi kami kapan saja untuk konsultasi paket internet, informasi layanan, atau bantuan teknis. Tim kami siap melayani Anda 24/7.</p>
+              </div>
+            </div>
+            <div class="row text-start">
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="card custom-card border shadow-none">
+                  <div class="card-body p-0">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63292.89449279108!2d109.68865817910156!3d-6.906246299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7025e12a3ae4c9%3A0x401e8f1fc28bdb0!2sGringsing%2C%20Kec.%20Gringsing%2C%20Kabupaten%20Batang%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1704189600000!5m2!1sid!2sid"
+                      height="365"
+                      style="border: 0; width: 100%"
+                      allowfullscreen=""
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="card custom-card overflow-hidden section-bg border overflow-hidden shadow-none">
+                  <div class="card-body">
+                    <div class="row gy-3 mt-2 px-3">
+                      <div class="col-xl-6">
+                        <div class="row gy-3">
+                          <div class="col-xl-12">
+                            <label for="contact-address-name" class="form-label">Nama Lengkap :</label>
+                            <input type="text" class="form-control" id="contact-address-name" placeholder="Masukkan nama lengkap Anda" />
+                          </div>
+                          <div class="col-xl-12">
+                            <label for="contact-address-phone" class="form-label">No. WhatsApp :</label>
+                            <input type="text" class="form-control" id="contact-address-phone" placeholder="Contoh: 0851-8311-2127" />
+                          </div>
+                          <div class="col-xl-12">
+                            <label for="contact-address-address" class="form-label">Alamat Lengkap :</label>
+                            <textarea class="form-control" id="contact-address-address" rows="1" placeholder="Alamat pemasangan internet"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-6">
+                        <label for="contact-address-message" class="form-label">Pesan / Pertanyaan :</label>
+                        <textarea class="form-control" id="contact-address-message" rows="8" placeholder="Tulis pertanyaan atau informasi yang ingin Anda tanyakan..."></textarea>
+                      </div>
+                      <div class="col-xl-12">
+                        <div class="d-flex mt-4">
+                          <div class="">
+                            <div class="btn-list">
+                              <a href="https://wa.me/6285183112127" target="_blank" class="btn btn-icon btn-success-light btn-wave" title="Chat via WhatsApp">
+                                <i class="ri-whatsapp-line fw-bold"></i>
+                              </a>
+                              <button class="btn btn-icon btn-primary-light btn-wave" title="Facebook">
+                                <i class="ri-facebook-line fw-bold"></i>
+                              </button>
+                              <button class="btn btn-icon btn-danger-light btn-wave" title="Instagram">
+                                <i class="ri-instagram-line fw-bold"></i>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="ms-auto">
+                            <button class="btn btn-primary btn-wave" onclick="sendContactMessage()">Kirim Pesan</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-10 -->
+
+        <!-- Start:: Section-11 -->
+        <section class="section landing-footer text-fixed-white">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-4">
+                <div class="px-4">
+                  <p class="fw-semibold mb-3">
+                    <a href="index.html"><img src="assets/images/brand-logos/difihome_white.png" alt="" style="max-width: 180px; height: auto" /></a>
+                  </p>
+
+                  <p class="mb-2 op-6 fw-normal">Solusi teknologi digital yang handal dan terjangkau. Dari kami untuk menyediakan layanan berkualitas dengan dukungan teknis 24/7 untuk mendukung kesuksesan Anda.</p>
+                  <p class="mb-0 op-6 fw-normal">Jl. Dukuh Lebo Kulon, Kecamatan Gringsing, Kabupaten Batang - Jawa Tengah</p>
+                </div>
+              </div>
+              <!-- <div class="col-xl-2">
+                <div class="px-4">
+                  <h6 class="fw-semibold mb-3">PAGES</h6>
+                  <ul class="list-unstyled op-6 fw-normal landing-footer-list">
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Email</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Profile</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Timeline</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Projects</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Contacts</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Portfolio</a>
+                    </li>
+                  </ul>
+                </div>
+              </div> -->
+              <div class="col-xl-2">
+                <div class="px-4">
+                  <h6 class="fw-semibold">INFO</h6>
+                  <ul class="list-unstyled op-6 fw-normal landing-footer-list">
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Contact US</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">About</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Services</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Blog</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white">Terms & Conditions</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-4">
+                <div class="px-4">
+                  <h6 class="fw-semibold">CONTACT</h6>
+                  <ul class="list-unstyled fw-normal landing-footer-list">
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white op-6"><i class="ri-home-4-line me-1 align-middle"></i> Jl. Dukuh Lebo Kulon, Kecamatan Gringsing, Kabupaten Batang - Jawa Tengah</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="text-fixed-white op-6"><i class="ri-mail-line me-1 align-middle"></i> kimojaringan@gmail.com</a>
+                    </li>
+                    <li>
+                      <a href="#" onclick="contactCS(); return false;" class="text-fixed-white op-6"><i class="ri-phone-line me-1 align-middle"></i> +62 851 8311 2127</a>
+                    </li>
+                    <li class="mt-3">
+                      <p class="mb-2 fw-semibold op-8">FOLLOW US ON :</p>
+                      <div class="mb-0">
+                        <div class="btn-list">
+                          <button class="btn btn-sm btn-icon btn-primary-light btn-wave waves-effect waves-light">
+                            <i class="ri-facebook-line fw-bold"></i>
+                          </button>
+                          <button class="btn btn-sm btn-icon btn-secondary-light btn-wave waves-effect waves-light">
+                            <i class="ri-twitter-line fw-bold"></i>
+                          </button>
+                          <button class="btn btn-sm btn-icon btn-warning-light btn-wave waves-effect waves-light">
+                            <i class="ri-instagram-line fw-bold"></i>
+                          </button>
+                          <button class="btn btn-sm btn-icon btn-success-light btn-wave waves-effect waves-light">
+                            <i class="ri-github-line fw-bold"></i>
+                          </button>
+                          <button class="btn btn-sm btn-icon btn-danger-light btn-wave waves-effect waves-light">
+                            <i class="ri-youtube-line fw-bold"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End:: Section-11 -->
+
+        <div class="text-center landing-main-footer py-3">
+          <span class="text-muted fs-15">
+            Copyright © <span id="year"></span> <a href="http://difihome.my.id/" class="text-primary fw-semibold"><u>Sinergi</u></a
+            >. Designed with <span class="fa fa-heart text-danger"></span> by <a href="https://difihome.my.id/" class="text-primary fw-semibold"><u> Difihome</u> </a> All rights reserved
+          </span>
+        </div>
+      </div>
+      <!-- End::app-content -->
+    </div>
+
+    <div class="scrollToTop">
+      <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
+    </div>
+    <div id="responsive-overlay"></div>
+
+    <!-- Popper JS -->
+    <script src="assets/libs/@popperjs/core/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Color Picker JS -->
+    <script src="assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
+
+    <!-- Choices JS -->
+    <script src="assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Defaultmenu JS -->
+    <script src="assets/js/defaultmenu.min.js"></script>
+
+    <!-- Internal Landing JS -->
+    <script src="assets/js/landing.js"></script>
+
+    <!-- Node Waves JS-->
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+
+    <!-- Sticky JS -->
+    <script src="assets/js/sticky.js"></script>
+
+    <!-- DifiHome Configuration - Link Management -->
+    <script src="config.js"></script>
+  </body>
+  <script>
+    function contactCS() {
+      const phoneNumber = "6285183112127";
+      const message = `Halo, Saya ingin bertanya tentang layanan internet.`;
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank");
+    }
+  </script>
+</html>

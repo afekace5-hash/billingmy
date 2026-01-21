@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Test Ticket Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Testing Ticket Data Endpoint</h1>
+    <button id="testBtn">Load Tickets</button>
+    <div id="result" style="margin-top: 20px; white-space: pre-wrap"></div>
+
+    <script>
+      $("#testBtn").click(function () {
+        $.ajax({
+          url: "/ticket/data",
+          method: "POST",
+          data: {
+            start: 0,
+            length: 10,
+            draw: 1,
+            search: { value: "" },
+          },
+          success: function (response) {
+            $("#result").html(JSON.stringify(response, null, 2));
+          },
+          error: function (xhr, status, error) {
+            $("#result").html("Error: " + status + "\n" + xhr.responseText);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "kimonet/billing",
+  "description": "Kimonet ISP Billing",
+  "type": "project",
+  "require": {
+    "codeigniter4/framework": "^4.6",
+    "midtrans/midtrans-php": "^2.6",
+    "firebase/php-jwt": "^6.11",
+    "tecnickcom/tcpdf": "^6.10"
+  }
+}

@@ -1,0 +1,331 @@
+/* Custom styles for improving dropdown menus */
+.submenu-indicator {
+  transition: transform 0.3s ease;
+  display: inline-block;
+  font-size: 14px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: center;
+}
+
+.nav-link[aria-expanded="true"] .submenu-indicator {
+  transform: translateY(-50%) rotate(90deg);
+  right: 15px; /* Maintain the same position when rotated */
+}
+
+.menu-dropdown {
+  border-radius: 0.25rem;
+  margin-top: 2px;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.menu-dropdown .nav-sm .nav-link {
+  padding: 0.6rem 1.5rem 0.6rem 2.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.menu-dropdown .nav-sm .nav-link:before {
+  content: "";
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(var(--bs-primary-rgb), 0.5);
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.menu-dropdown .nav-sm .nav-link:hover:before {
+  background-color: var(--bs-primary);
+}
+
+.menu-dropdown .nav-sm .nav-link:hover {
+  padding-left: 2.5rem;
+  color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+.menu-dropdown .nav-sm .nav-link.active {
+  color: var(--bs-primary);
+  font-weight: 500;
+}
+
+.menu-dropdown .nav-sm .nav-link.active:before {
+  background-color: var(--bs-primary);
+}
+
+/* Improved dropdown animation */
+.menu-dropdown.show {
+  animation: fadeInDown 0.3s ease-in-out;
+}
+
+/* Additional alignment fixes */
+.vertical-menu {
+  width: 250px; /* Ensure consistent width */
+}
+
+.vertical-menu .metismenu li {
+  width: 100%;
+}
+
+/* Main menu item styling */
+.vertical-menu .metismenu li .menu-link {
+  padding: 0.85rem 1.5rem;
+  color: #545a6d;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  border-radius: 8px;
+  margin: 2px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Add arrow for collapsed sidebar */
+.vertical-menu.sidebar-enable .metismenu li .menu-link::after {
+  content: "\ea6e";
+  font-family: "boxicons" !important;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+  font-size: 1.1rem;
+  color: #545a6d;
+}
+
+/* Indent submenu for better hierarchy */
+.vertical-menu .metismenu .nav-sm {
+  padding-left: 0;
+}
+
+/* Improve main menu icon alignment */
+.vertical-menu .metismenu li i.bx,
+.vertical-menu .metismenu li i.mdi,
+.vertical-menu .metismenu li i.ri {
+  min-width: 1.5rem;
+  display: inline-block;
+  text-align: center;
+  margin-right: 0.4rem;
+}
+
+/* Fix for Firefox alignment */
+@-moz-document url-prefix() {
+  .menu-dropdown .nav-sm .nav-link:before {
+    top: 14px;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Additional alignment improvements */
+.nav-item {
+  position: relative;
+}
+
+/* Main menu text alignment */
+.nav-link span {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Menu icon alignment */
+.nav-link i.bx,
+.nav-link i.mdi,
+.nav-link i.ri {
+  vertical-align: middle;
+  width: 1.5rem;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* Better spacing for menu items */
+.vertical-menu .metismenu > li {
+  margin-bottom: 3px;
+}
+
+/* Improve the highlight effect */
+.nav-link:hover,
+.nav-link:focus {
+  background-color: rgba(var(--bs-primary-rgb), 0.05);
+  border-radius: 8px;
+}
+
+/* Active menu item highlight */
+.nav-link.active,
+.mm-active > .nav-link {
+  color: var(--bs-primary) !important;
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+  border-radius: 8px;
+}
+
+/* Ensure menu dropdowns have proper width */
+.menu-dropdown {
+  width: calc(100% - 10px);
+  padding: 0.5rem 0;
+  margin: 0 5px;
+}
+
+.menu-dropdown .nav-sm .nav-link {
+  border-radius: 6px;
+  margin: 2px 5px;
+}
+
+/* Better submenu styling */
+.vertical-menu .metismenu .sub-menu {
+  padding-left: 0;
+}
+
+/* Fix for menu text alignment */
+.vertical-menu .metismenu li a {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.75rem 1.5rem;
+}
+
+/* Space between icon and text */
+.vertical-menu .metismenu li a i:not(.submenu-indicator) {
+  margin-right: 10px;
+  width: 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  display: inline-block;
+}
+
+/* Submenu arrow rotation */
+.vertical-menu .metismenu li a[aria-expanded="true"]::after {
+  transform: rotate(90deg);
+}
+
+/* Hide arrow for items without submenu */
+.vertical-menu .metismenu li a:not([data-bs-toggle])::after {
+  display: none;
+}
+
+/* Adjust arrow position in collapsed state */
+body[data-sidebar-size="sm"] .vertical-menu .metismenu li .menu-link::after {
+  margin-left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Main menu content alignment */
+.vertical-menu .metismenu li a span {
+  flex: 1;
+  padding-right: 20px; /* Make room for the arrow icon */
+}
+
+/* Collapsed sidebar specific styles */
+body[data-sidebar-size="sm"] .vertical-menu {
+  position: relative;
+}
+
+body[data-sidebar-size="sm"] .vertical-menu .metismenu li .menu-link {
+  padding: 0.85rem;
+  text-align: center;
+  justify-content: center;
+}
+
+body[data-sidebar-size="sm"] .vertical-menu .metismenu li a span {
+  display: none;
+}
+
+body[data-sidebar-size="sm"] .sidebar-main-title {
+  display: none;
+}
+
+/* Fix for submenu indentation */
+.vertical-menu .metismenu .menu-dropdown .nav-sm .nav-link {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 2.5rem;
+}
+
+/* Ensure consistent padding for menu items */
+.vertical-menu .metismenu > li > a {
+  padding: 0.75rem 1.5rem;
+}
+
+/* Remove extra padding that might cause misalignment */
+.vertical-menu .metismenu {
+  padding: 0 10px;
+}
+
+/* Sidebar Main Title Card Styling */
+.sidebar-main-title {
+  padding: 0.75rem 1rem;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+}
+
+.sidebar-main-title::before {
+  display: none;
+}
+
+.sidebar-main-title h6 {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #a6b0cf;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  position: relative;
+  text-align: left;
+}
+
+.sidebar-main-title p {
+  display: none;
+}
+
+/* Specific submenu alignment fixes */
+.vertical-menu .mm-collapse {
+  padding-left: 0;
+}
+
+/* Remove default padding from Bootstrap that might interfere */
+.nav-sm.mm-collapse {
+  padding: 0;
+}
+
+/* Make submenu text align with main menu text */
+.vertical-menu .metismenu li .menu-link + .collapse .nav-link {
+  padding-left: 3rem;
+  font-size: 0.9rem;
+}
+
+/* Adjust the bullet point position */
+.menu-dropdown .nav-sm .nav-link:before {
+  left: 1.8rem;
+}
+
+/* Override any other styles that may be interfering */
+.vertical-menu .metismenu .nav-sm .nav-item .nav-link {
+  padding-left: 3rem !important;
+}

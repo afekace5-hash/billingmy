@@ -1,0 +1,352 @@
+/* Mobile App Style untuk Customer Dashboard */
+@media (max-width: 768px) {
+  .page-content {
+    background: linear-gradient(180deg, #ff6b9d 0%, #ffa8c5 140px, #e8e8f5 140px);
+    padding: 0 !important;
+  }
+
+  .mobile-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    color: white;
+  }
+
+  .mobile-top-bar .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-top-bar .logo-icon {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .mobile-top-bar .app-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .mobile-top-bar .notif-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .mobile-header {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    margin: 0 20px 20px 20px;
+  }
+
+  .user-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .user-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: none;
+  }
+
+  .user-details h6 {
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 0 0 4px 0;
+    font-weight: 400;
+  }
+
+  .user-details h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .user-right {
+    text-align: right;
+  }
+
+  .user-right h6 {
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 0 0 4px 0;
+  }
+
+  .user-right h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #7b68ee;
+    margin: 0;
+  }
+
+  .main-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    background: transparent;
+    padding: 20px 0 0 0;
+    margin: 0;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .menu-item .icon-box {
+    width: 48px;
+    height: 48px;
+    background: #f3f4f6;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #6b7280;
+  }
+
+  .menu-item span {
+    font-size: 12px;
+    color: #4b5563;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  /* Usage Card (Hotspot Style) */
+  .usage-card {
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffa8c5 100%);
+    border-radius: 20px;
+    padding: 24px;
+    color: white;
+    margin: 0 20px 20px 20px;
+    box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+  }
+
+  .usage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .usage-label {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  .usage-status {
+    background: rgba(255, 255, 255, 0.9);
+    color: #ff6b9d;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .usage-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stat-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  .stat-info h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 2px 0;
+  }
+
+  .stat-info p {
+    font-size: 10px;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .usage-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .usage-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  .usage-date {
+    font-size: 11px;
+    opacity: 0.9;
+  }
+
+  /* Section Header Row */
+  .section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px 15px 20px;
+  }
+
+  .see-all-link {
+    font-size: 13px;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  /* Promo Cards */
+  .promo-cards {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 0 20px 10px 20px;
+    margin-bottom: 25px;
+    scrollbar-width: none;
+  }
+
+  .promo-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .promo-card {
+    min-width: 160px;
+    max-width: 160px;
+    width: 160px;
+    height: 200px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #a8c0ff 0%, #c1a5f0 100%);
+    border-radius: 16px;
+    padding: 20px 15px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .promo-amount {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .promo-card h6 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+  }
+
+  .promo-card p {
+    font-size: 11px;
+    opacity: 0.9;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+    flex-grow: 1;
+  }
+
+  .btn-promo {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+  }
+
+  .btn-promo:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .section-title-mobile {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d3748;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Hide desktop elements on mobile */
+  .page-title-box,
+  .card.card-animate,
+  .action-buttons-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-header,
+  .mobile-view,
+  .mobile-top-bar {
+    display: none;
+  }
+}

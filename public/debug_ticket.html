@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Debug Ticket DataTables</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Debug Ticket DataTables</h1>
+    <button id="testBtn">Test Endpoint</button>
+    <pre id="result"></pre>
+
+    <script>
+      $("#testBtn").click(function () {
+        $.ajax({
+          url: "/ticket/data",
+          method: "POST",
+          data: {
+            start: 0,
+            length: 10,
+            draw: 1,
+            search: { value: "" },
+            order: [{ column: 1, dir: "desc" }],
+            columns: [
+              { data: null, orderable: false },
+              { data: "id" },
+              { data: "status" },
+              { data: "category" },
+              { data: "subject" },
+              { data: "branch" },
+              { data: "layanan" },
+              { data: "installed_at" },
+              { data: "technician" },
+              { data: "customer_name" },
+              { data: "odp" },
+              { data: "address" },
+              { data: "duration" },
+            ],
+          },
+          success: function (response) {
+            console.log("SUCCESS:", response);
+            $("#result").text(JSON.stringify(response, null, 2));
+            alert("Data loaded! Check response above. Total: " + response.recordsTotal);
+          },
+          error: function (xhr, status, error) {
+            console.error("ERROR:", xhr.responseText);
+            $("#result").text("ERROR: " + status + "\n" + xhr.responseText);
+            alert("Failed! Check console.");
+          },
+        });
+      });
+
+      // Auto click on load
+      $(document).ready(function () {
+        $("#testBtn").click();
+      });
+    </script>
+  </body>
+</html>

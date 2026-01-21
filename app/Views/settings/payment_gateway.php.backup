@@ -1,0 +1,648 @@
+<?= $this->extend('layout/default') ?>
+
+<?= $this->section('title') ?>
+<title>Payment Gateway - Billing System</title>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0 font-size-18">Konfigurasi Payment Gateway</h4>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Settings</a></li>
+                            <li class="breadcrumb-item active">Payment Gateway</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Konfigurasi Payment Gateway</h4>
+                        <p class="card-title-desc mb-4">Kelola pengaturan payment gateway untuk sistem pembayaran digital</p>
+
+                        <!-- Gateway Cards Grid -->
+                        <div class="row g-4">
+                            <!-- Midtrans Card -->
+                            <div class="col-md-4">
+                                <div class="card border shadow-sm h-100 gateway-card" data-gateway="midtrans">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3">
+                                            <i class="bx bxl-stripe bx-lg text-primary"></i>
+                                        </div>
+                                        <h5 class="card-title">Midtrans</h5>
+                                        <p class="text-muted small">Leading Payment Gateway Indonesia</p>
+                                        <div class="mb-3">
+                                            <span class="badge bg-<?= isset($gateways['midtrans']) && $gateways['midtrans']['is_active'] == 1 ? 'success' : 'secondary' ?> status-badge" id="status-midtrans">
+                                                <?= isset($gateways['midtrans']) && $gateways['midtrans']['is_active'] == 1 ? 'Aktif' : 'Tidak Aktif' ?>
+                                            </span>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary w-100" onclick="configureGateway('midtrans')">
+                                            <i class="bx bx-cog me-1"></i>Konfigurasi
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Duitku Card -->
+                            <div class="col-md-4">
+                                <div class="card border shadow-sm h-100 gateway-card" data-gateway="duitku">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3">
+                                            <i class="bx bx-wallet bx-lg text-success"></i>
+                                        </div>
+                                        <h5 class="card-title">Duitku</h5>
+                                        <p class="text-muted small">Indonesian Payment Gateway</p>
+                                        <div class="mb-3">
+                                            <span class="badge bg-<?= isset($gateways['duitku']) && $gateways['duitku']['is_active'] == 1 ? 'success' : 'secondary' ?> status-badge" id="status-duitku">
+                                                <?= isset($gateways['duitku']) && $gateways['duitku']['is_active'] == 1 ? 'Aktif' : 'Tidak Aktif' ?>
+                                            </span>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary w-100" onclick="configureGateway('duitku')">
+                                            <i class="bx bx-cog me-1"></i>Konfigurasi
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Flip Card -->
+                            <div class="col-md-4">
+                                <div class="card border shadow-sm h-100 gateway-card" data-gateway="flip">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3">
+                                            <i class="bx bx-credit-card bx-lg text-info"></i>
+                                        </div>
+                                        <h5 class="card-title">Flip</h5>
+                                        <p class="text-muted small">Bill Payment Indonesia</p>
+                                        <div class="mb-3">
+                                            <span class="badge bg-<?= isset($gateways['flip']) && $gateways['flip']['is_active'] == 1 ? 'success' : 'secondary' ?> status-badge" id="status-flip">
+                                                <?= isset($gateways['flip']) && $gateways['flip']['is_active'] == 1 ? 'Aktif' : 'Tidak Aktif' ?>
+                                            </span>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary w-100" onclick="configureGateway('flip')">
+                                            <i class="bx bx-cog me-1"></i>Konfigurasi
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Configuration Modal -->
+                        <div class="modal fade" id="gatewayConfigModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary text-white">
+                                        <h5 class="modal-title" id="modalTitle">
+                                            <i class="bx bx-cog me-2"></i>Konfigurasi Gateway
+                                        </h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <form id="paymentGatewayForm">
+                                        <?= csrf_field() ?>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-medium">Status Gateway</label>
+                                                        <div class="form-check form-switch form-switch-lg">
+                                                            <input class="form-check-input" type="checkbox" name="is_active" id="gateway_active">
+                                                            <label class="form-check-label" for="gateway_active">Aktifkan</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-medium">Environment</label>
+                                                        <select class="form-select" name="environment" id="gateway_environment">
+                                                            <option value="sandbox">Sandbox/Test</option>
+                                                            <option value="production">Production/Live</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="gatewayFields"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                            <button type="button" class="btn btn-success" onclick="testConnection()">
+                                                <i class="bx bx-wifi me-1"></i>Tes Koneksi
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bx bx-save me-1"></i>Simpan
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .gateway-card {
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+            .gateway-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+            }
+
+            .status-badge {
+                font-size: 0.75rem;
+                padding: 0.35em 0.65em;
+            }
+        </style>
+
+        <!-- Payment Gateway Form Script -->
+        <script>
+            let currentGateway = null;
+
+            // Gateway configurations
+            const gatewayConfigs = {
+                midtrans: {
+                    name: 'Midtrans',
+                    fields: ['merchant_id', 'client_key', 'server_key']
+                },
+                duitku: {
+                    name: 'Duitku',
+                    fields: ['merchant_code', 'api_key']
+                },
+                flip: {
+                    name: 'Flip',
+                    fields: ['secret_key', 'validation_token']
+                }
+            };
+
+            // Load existing gateway data from PHP
+            let existingGateways = {};
+            try {
+                <?php if (isset($gateways) && !empty($gateways)): ?>
+                    const gatewayData = <?= json_encode($gateways) ?>;
+                    existingGateways = gatewayData || {};
+                    console.log('Loaded gateway data:', existingGateways);
+                <?php else: ?>
+                    existingGateways = {};
+                <?php endif; ?>
+            } catch (e) {
+                console.error('Error loading gateway data:', e);
+                existingGateways = {};
+            }
+
+            // Configure Gateway Function
+            function configureGateway(gateway) {
+                currentGateway = gateway;
+                const config = gatewayConfigs[gateway];
+                const modal = new bootstrap.Modal(document.getElementById('gatewayConfigModal'));
+
+                // Update modal title
+                document.getElementById('modalTitle').innerHTML = `<i class="bx bx-cog me-2"></i>Konfigurasi ${config.name}`;
+
+                // Populate form fields
+                const fieldsDiv = document.getElementById('gatewayFields');
+                let fieldsHtml = `
+                    <div class="alert alert-info">
+                        <h6 class="alert-heading">Konfigurasi ${config.name}</h6>
+                        <p class="mb-0">Masukkan kredensial ${config.name} Anda.</p>
+                    </div>
+                    <input type="hidden" name="gateway_type" value="${gateway}">
+                    <input type="hidden" name="gateway_name" value="${config.name}">
+                `;
+
+                config.fields.forEach(fieldName => {
+                    let displayName = fieldName.replace(/_/g, ' ').toUpperCase();
+                    const inputType = fieldName.includes('key') || fieldName.includes('secret') ? 'password' : 'text';
+
+                    fieldsHtml += `
+                        <div class="mb-3">
+                            <label class="form-label">${displayName} <span class="text-danger">*</span></label>
+                            <input type="${inputType}" class="form-control" name="${fieldName}" 
+                                   placeholder="Masukkan ${displayName}" required>
+                        </div>
+                    `;
+                });
+
+                fieldsDiv.innerHTML = fieldsHtml;
+
+                // Load existing data
+                if (existingGateways[gateway]) {
+                    const data = existingGateways[gateway];
+                    document.querySelector('input[name="is_active"]').checked = data.is_active == 1;
+                    document.querySelector('select[name="environment"]').value = data.environment || 'sandbox';
+
+                    const reverseMapping = {
+                        'midtrans': {
+                            'merchant_id': 'merchant_code',
+                            'client_key': 'api_secret',
+                            'server_key': 'api_key'
+                        },
+                        'duitku': {
+                            'merchant_code': 'merchant_code',
+                            'api_key': 'api_key'
+                        },
+                        'flip': {
+                            'secret_key': 'api_key',
+                            'validation_token': 'api_secret'
+                        }
+                    };
+
+                    if (reverseMapping[gateway]) {
+                        Object.keys(reverseMapping[gateway]).forEach(fieldName => {
+                            const dbField = reverseMapping[gateway][fieldName];
+                            const input = document.querySelector(`input[name="${fieldName}"]`);
+                            if (input && data[dbField]) {
+                                input.value = data[dbField];
+                            }
+                        });
+                    }
+                }
+
+                modal.show();
+            }
+
+            // Form submission handler
+            document.addEventListener('DOMContentLoaded', function() {
+                        // Load existing gateway data from PHP
+                        let existingGateways = {};
+                        try {
+                            <?php if (isset($gateways) && !empty($gateways)): ?>
+                                const gatewayData = <?= json_encode($gateways) ?>;
+                                existingGateways = gatewayData || {};
+                                // Debug: Show loaded data in browser console
+                                console.log('Loaded gateway data:', existingGateways);
+                            <?php else: ?>
+                                existingGateways = {};
+                                console.log('No gateway data found from server');
+                            <?php endif; ?>
+                        } catch (e) {
+                            console.error('Error loading gateway data:', e);
+                            existingGateways = {};
+                        }
+
+                        // Form submission handler
+                        const form = document.getElementById('paymentGatewayForm');
+                        if (form) {
+                            form.addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                const form = document.getElementById('paymentGatewayForm');
+                                if (form) {
+                                    form.addEventListener('submit', function(e) {
+                                        e.preventDefault();
+                                        saveGatewayConfig();
+                                    });
+                                }
+                            });
+
+                            // Save Gateway Config
+                            // Remove animation classes for simplicity
+                            // Remove existing styling and add new modern styling
+                            form.style.border = 'none';
+                            form.style.borderRadius = '';
+                            form.style.padding = '';
+                            form.style.backgroundColor = ''; // Populate form fields
+                            const fieldsDiv = document.getElementById('gatewayFields');
+                            if (fieldsDiv) {
+                                let alertMessage = `Masukkan kredensial ${config.name} Anda. Pastikan data yang dimasukkan benar dan sesuai dengan akun ${config.name} Anda.`;
+
+                                let fieldsHtml = `
+                            <div class="alert alert-info">
+                                <h6 class="alert-heading">Konfigurasi ${config.name}</h6>
+                                <p class="mb-0">${alertMessage}</p>
+                            </div>
+                            <input type="hidden" name="gateway_type" value="${selectedValue}">
+                            <input type="hidden" name="gateway_name" value="${config.name}">
+                        `;
+
+                                config.fields.forEach(fieldName => {
+                                    let displayName = fieldName.replace(/_/g, ' ').toUpperCase();
+                                    let fieldDescription = 'Field ini wajib diisi';
+                                    let isRequired = true;
+                                    const inputType = fieldName.includes('key') || fieldName.includes('secret') ? 'password' : 'text';
+                                    const requiredAttr = isRequired ? 'required' : '';
+                                    const requiredMark = isRequired ? '<span class="text-danger">*</span>' : '<span class="text-muted">(Opsional)</span>';
+
+                                    fieldsHtml += `
+                                <div class="mb-3">
+                                    <label class="form-label">${displayName} ${requiredMark}</label>
+                                    <input type="${inputType}" class="form-control" name="${fieldName}" 
+                                           placeholder="Masukkan ${displayName}" ${requiredAttr}>
+                                    <div class="form-text">${fieldDescription}</div>
+                                </div>
+                            `;
+                                });
+                                fieldsDiv.innerHTML = fieldsHtml;
+                                // Load existing data for this gateway
+                                if (existingGateways[selectedValue]) {
+                                    const data = existingGateways[selectedValue];
+
+                                    // Set status and environment
+                                    const activeCheckbox = document.querySelector('input[name="is_active"]');
+                                    const environmentSelect = document.querySelector('select[name="environment"]');
+
+                                    if (activeCheckbox) activeCheckbox.checked = data.is_active == 1;
+                                    if (environmentSelect) environmentSelect.value = data.environment || 'sandbox';
+
+                                    // Create reverse mapping for loading data
+                                    const reverseMapping = {
+                                        'midtrans': {
+                                            'merchant_id': 'merchant_code',
+                                            'client_key': 'api_secret',
+                                            'server_key': 'api_key'
+                                        },
+                                        'duitku': {
+                                            'merchant_code': 'merchant_code',
+                                            'api_key': 'api_key'
+                                        },
+                                        'flip': {
+                                            'secret_key': 'api_key',
+                                            'validation_token': 'api_secret'
+                                        }
+                                    };
+
+                                    // Set gateway-specific field values using reverse mapping
+                                    if (reverseMapping[selectedValue]) {
+                                        const mapping = reverseMapping[selectedValue];
+                                        Object.keys(mapping).forEach(formField => {
+                                            const dbField = mapping[formField];
+                                            const input = document.querySelector(`input[name="${formField}"]`);
+                                            if (input && data[dbField]) {
+                                                input.value = data[dbField];
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                        });
+
+
+
+                    // Save Gateway Config function
+                    window.saveGatewayConfig = function() {
+                        const form = document.getElementById('paymentGatewayForm');
+                        if (!form) return;
+                        const formData = new FormData(form);
+                        const gatewayType = formData.get('gateway_type');
+
+                        // Map gateway-specific fields to controller expected fields
+                        const fieldMapping = {
+                            'midtrans': {
+                                'merchant_id': 'merchant_code',
+                                'client_key': 'api_secret',
+                                'server_key': 'api_key'
+                            },
+                            'duitku': {
+                                'merchant_code': 'merchant_code',
+                                'api_key': 'api_key'
+                            },
+                            'flip': {
+                                'secret_key': 'api_key',
+                                'validation_token': 'api_secret'
+                            }
+                        };
+
+                        // Create new FormData with mapped fields
+                        const mappedFormData = new FormData();
+
+                        // Add basic fields
+                        mappedFormData.append('gateway_type', gatewayType);
+                        mappedFormData.append('gateway_name', formData.get('gateway_name'));
+                        mappedFormData.append('is_active', formData.get('is_active') || '0');
+                        mappedFormData.append('environment', formData.get('environment'));
+
+                        // Add CSRF token
+                        const csrfToken = document.querySelector('input[name="<?= csrf_token() ?>"]');
+                        if (csrfToken) {
+                            mappedFormData.append('<?= csrf_token() ?>', csrfToken.value);
+                        }
+
+                        // Map gateway-specific fields to controller expected fields
+                        if (fieldMapping[gatewayType]) {
+                            const mapping = fieldMapping[gatewayType];
+                            Object.keys(mapping).forEach(originalField => {
+                                const mappedField = mapping[originalField];
+                                const value = formData.get(originalField);
+                                if (value) {
+                                    mappedFormData.append(mappedField, value);
+                                }
+                            });
+                        }
+
+                        const submitBtn = form.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.innerHTML;
+
+                        submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin me-1"></i>Menyimpan...';
+                        submitBtn.disabled = true;
+                        fetch('<?= site_url('settings/payment-getway') ?>', {
+                                method: 'POST',
+                                body: mappedFormData,
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest'
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    if (typeof Swal !== 'undefined') {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Berhasil!',
+                                            text: data.message,
+                                            timer: 2000,
+                                            showConfirmButton: false
+                                        });
+                                    } else {
+                                        alert('Konfigurasi berhasil disimpan: ' + data.message);
+                                    }
+
+                                    // Update existingGateways data and refresh status
+                                    const gateway = mappedFormData.get('gateway_type');
+                                    if (!existingGateways[gateway]) existingGateways[gateway] = {};
+
+                                    // Update the existing data
+                                    for (let [key, value] of mappedFormData.entries()) {
+                                        if (key !== 'gateway_type' && key !== 'gateway_name' && !key.startsWith('<?= csrf_token() ?>')) {
+                                            existingGateways[gateway][key] = value;
+                                        }
+                                    }
+
+                                    // Update status badge on card
+                                    const statusBadge = document.getElementById(`status-${gateway}`);
+                                    if (statusBadge) {
+                                        const isActive = mappedFormData.get('is_active') == '1';
+                                        statusBadge.className = `badge bg-${isActive ? 'success' : 'secondary'} status-badge`;
+                                        statusBadge.textContent = isActive ? 'Aktif' : 'Tidak Aktif';
+                                    }
+
+                                    // Close modal after successful save
+                                    setTimeout(() => {
+                                        const modal = bootstrap.Modal.getInstance(document.getElementById('gatewayConfigModal'));
+                                        if (modal) modal.hide();
+                                    }, 2000);
+                                } else {
+                                    if (typeof Swal !== 'undefined') {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Gagal!',
+                                            text: data.message
+                                        });
+                                    } else {
+                                        alert('Gagal menyimpan: ' + data.message);
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                if (typeof Swal !== 'undefined') {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error!',
+                                        text: 'Terjadi kesalahan saat menyimpan konfigurasi.'
+                                    });
+                                } else {
+                                    alert('Terjadi kesalahan saat menyimpan konfigurasi.');
+                                }
+                            })
+                            .finally(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                            });
+                    };
+
+                    // Test Connection function
+                    window.testConnection = function() {
+                        if (!currentGateway) {
+                            if (typeof Swal !== 'undefined') {
+                                Swal.fire('Error', 'Pilih payment gateway terlebih dahulu!', 'error');
+                            } else {
+                                alert('Pilih payment gateway terlebih dahulu!');
+                            }
+                            return;
+                        }
+
+                        const btn = event.target;
+                        const originalText = btn.innerHTML;
+
+                        btn.innerHTML = '<i class="bx bx-loader-alt bx-spin me-1"></i>Testing...';
+                        btn.disabled = true;
+
+                        // Use fetch API for the request
+                        fetch('<?= site_url('payment/test-connection') ?>', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                    'X-Requested-With': 'XMLHttpRequest'
+                                },
+                                body: new URLSearchParams({
+                                    gateway: currentGateway,
+                                    '<?= csrf_token() ?>': '<?= csrf_hash() ?>'
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    if (typeof Swal !== 'undefined') {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Koneksi Berhasil!',
+                                            text: data.message,
+                                            timer: 3000,
+                                            showConfirmButton: false
+                                        });
+                                    } else {
+                                        alert('Koneksi Berhasil: ' + data.message);
+                                    }
+                                } else {
+                                    if (typeof Swal !== 'undefined') {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Koneksi Gagal!',
+                                            text: data.message
+                                        });
+                                    } else {
+                                        alert('Koneksi Gagal: ' + data.message);
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                if (typeof Swal !== 'undefined') {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error!',
+                                        text: `Terjadi kesalahan saat testing koneksi ${currentGateway}.`
+                                    });
+                                } else {
+                                    alert(`Terjadi kesalahan saat testing koneksi ${currentGateway}.`);
+                                }
+                            })
+                            .finally(() => {
+                                btn.innerHTML = originalText;
+                                btn.disabled = false;
+                            });
+                    };
+        </script>
+    </div>
+</div>
+<?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+<style>
+    /* Simple styling to match application consistency */
+    .gateway-card {
+        cursor: pointer;
+    }
+
+    .avatar-xl {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .avatar-md {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .avatar-lg {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .avatar-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .avatar-xl {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        .btn-lg {
+            padding: 0.625rem 1.5rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<?= $this->endSection() ?>

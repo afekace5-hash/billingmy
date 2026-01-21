@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Berlangganan Internet (Wifi) - Difihome Indonesia</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/build/assets/app-hp6FulPj.css" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/css/webcss/newstyle.css" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/css/webcss/execute.css" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/css/webcss/style.css" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/css/webcss/navbar.css" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/css/webcss/aboutus.css" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/css/webcss/footer.css" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/css/webcss/mobilestyle.css" />
+    <link rel="stylesheet" href="https://g-fiber.co.id/css/webcss/firework.css" />
+    <link rel="icon" href="https://g-fiber.co.id/img/webimg/favicon2.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #1a237e 0%, #1976d2 100%);
+        font-family: "Inter", Arial, sans-serif;
+        min-height: 100vh;
+      }
+      .main-card {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(30, 64, 175, 0.12);
+        padding: 32px 24px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+      .form-title {
+        font-weight: 700;
+        font-size: 2rem;
+        color: #1a237e;
+        margin-bottom: 8px;
+      }
+      .form-desc {
+        color: #1976d2;
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+      }
+      .form-section-title {
+        font-weight: 600;
+        color: #1976d2;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+      }
+      .form-label {
+        font-weight: 500;
+        color: #1a237e;
+      }
+      .form-control,
+      .form-select {
+        border-radius: 8px;
+        border: 1px solid #e3e6f0;
+        font-size: 1rem;
+      }
+      .package-card {
+        background: #f5f8ff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(30, 64, 175, 0.07);
+        padding: 18px 16px;
+        margin-bottom: 16px;
+        transition: box-shadow 0.2s;
+      }
+      .package-card.selected {
+        box-shadow: 0 4px 16px #1976d2a0;
+        border: 2px solid #1976d2;
+      }
+      .package-title {
+        font-weight: 700;
+        color: #1976d2;
+        font-size: 1.1rem;
+      }
+      .package-speed {
+        font-weight: 600;
+        color: #fff;
+        background: #1976d2;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+        display: inline-block;
+      }
+      .package-price {
+        font-weight: 700;
+        color: #1a237e;
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+      }
+      .package-features {
+        font-size: 0.98rem;
+        color: #333;
+        margin-bottom: 8px;
+        padding-left: 18px;
+      }
+      .btn-subscribe {
+        background: #7c4dff;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        padding: 10px 0;
+        margin-top: 12px;
+        box-shadow: 0 2px 8px #7c4dff40;
+        transition: background 0.2s;
+      }
+      .btn-subscribe:hover {
+        background: #1976d2;
+        color: #fff;
+      }
+      .preview-card {
+        background: #f5f8ff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(30, 64, 175, 0.07);
+        padding: 18px 16px;
+        margin-bottom: 16px;
+      }
+      .form-check-label {
+        font-size: 0.98rem;
+        color: #333;
+      }
+      @media (max-width: 768px) {
+        .main-card {
+          padding: 18px 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+          <div class="main-card">
+            <div class="text-center mb-4">
+              <div class="form-title">Form Berlangganan Internet (Wifi)</div>
+              <div class="form-desc">Lengkapi data di bawah untuk mendapatkan layanan internet terbaik dari Difihome Indonesia</div>
+            </div>
+            <form action="formberlangganan" class="form-berlangganan-section" id="registerForm" method="POST">
+              <input type="hidden" name="_token" value="BB1Vz7kM3lK74z2ia29mUgEPxrYjdPm2vJQj3J2b" autocomplete="off" />
+              <div class="form-berlangganan-left">
+                <div class="sub-form-berlangganan">
+                  <div class="sub-form-header">
+                    <div class="sub-form-label">
+                      <p class="text-xl leading-none font-bold tracking-tight text-gray-900">Data Diri</p>
+                      <p class="text-sm text-gray-600">Informasi berikut dibutuhkan untuk proses berlangganan Anda.</p>
+                    </div>
+                    <span class="chevron-form !hidden">
+                      <img src="https://g-fiber.co.id/img/webimg/chevron-right-b.svg" alt="" class="size-6" />
+                    </span>
+                  </div>
+                  <div class="form-info">
+                    <img src="https://g-fiber.co.id/img/webimg/idcard.svg" alt="" class="size-7" />
+                    <p class="text-sm text-yellow-950">Isi data diri Anda sebelum memilih paket internet G-fiber Indonesia</p>
+                  </div>
+                  <div class="double-input">
+                    <div class="text-field">
+                      <p class="label">Nama Lengkap</p>
+                      <input name="customername" type="text" class="input-form" placeholder="Name" autofocus="" required="" />
+                    </div>
+                    <div class="text-field">
+                      <p class="label">Nomor Handphone</p>
+                      <input name="nocustomer" type="number" class="input-form usID" placeholder="8XX XXXX XXXX" required="" />
+                    </div>
+                  </div>
+                  <div class="map-feature">
+                    <div class="flex items-center justify-between">
+                      <p class="text-base font-bold tracking-tight text-gray-800 sm:w-max w-32">Cari Lokasi Anda Di Map</p>
+                      <div id="button-3-m" class="!bg-indigo-950 !h-9 cursor-pointer" onclick="getCurrentLocation()">Lokasi Saat ini</div>
+                    </div>
+                    <div id="map" class="z-10 leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative">
+                      <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px)">
+                        <div class="leaflet-pane leaflet-tile-pane">
+                          <div class="leaflet-layer" style="z-index: 1; opacity: 1">
+                            <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 17; transform: translate3d(347px, 103px, 0px) scale(0.5)"></div>
+                            <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(347px, 103px, 0px) scale(1)">
+                              <img alt="" src="https://a.tile.openstreetmap.org/12/3269/2122.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-134px, -207px, 0px); opacity: 1" /><img
+                                alt=""
+                                src="https://b.tile.openstreetmap.org/12/3269/2123.png"
+                                class="leaflet-tile leaflet-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(-134px, 49px, 0px); opacity: 1"
+                              /><img alt="" src="https://c.tile.openstreetmap.org/12/3268/2122.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-390px, -207px, 0px); opacity: 1" /><img
+                                alt=""
+                                src="https://b.tile.openstreetmap.org/12/3270/2122.png"
+                                class="leaflet-tile leaflet-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(122px, -207px, 0px); opacity: 1"
+                              /><img alt="" src="https://a.tile.openstreetmap.org/12/3268/2123.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-390px, 49px, 0px); opacity: 1" /><img
+                                alt=""
+                                src="https://c.tile.openstreetmap.org/12/3270/2123.png"
+                                class="leaflet-tile leaflet-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(122px, 49px, 0px); opacity: 1"
+                              /><img alt="" src="https://c.tile.openstreetmap.org/12/3271/2122.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(378px, -207px, 0px); opacity: 1" /><img
+                                alt=""
+                                src="https://a.tile.openstreetmap.org/12/3271/2123.png"
+                                class="leaflet-tile leaflet-tile-loaded"
+                                style="width: 256px; height: 256px; transform: translate3d(378px, 49px, 0px); opacity: 1"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="leaflet-pane leaflet-overlay-pane"></div>
+                        <div class="leaflet-pane leaflet-shadow-pane"></div>
+                        <div class="leaflet-pane leaflet-marker-pane"></div>
+                        <div class="leaflet-pane leaflet-tooltip-pane"></div>
+                        <div class="leaflet-pane leaflet-popup-pane"></div>
+                        <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(837040px, 543486px, 0px) scale(2048)"></div>
+                      </div>
+                      <div class="leaflet-control-container">
+                        <div class="leaflet-top leaflet-left">
+                          <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+                            <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true">+</span></a
+                            ><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true">−</span></a>
+                          </div>
+                        </div>
+                        <div class="leaflet-top leaflet-right"></div>
+                        <div class="leaflet-bottom leaflet-left"></div>
+                        <div class="leaflet-bottom leaflet-right">
+                          <div class="leaflet-control-attribution leaflet-control">
+                            <a href="https://leafletjs.com" title="A JavaScript library for interactive maps"
+                              ><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag">
+                                <path fill="#4C7BE1" d="M0 0h12v4H0z"></path>
+                                <path fill="#FFD500" d="M0 4h12v3H0z"></path>
+                                <path fill="#E0BC00" d="M0 7h12v1H0z"></path>
+                              </svg>
+                              Leaflet</a
+                            >
+                            <span aria-hidden="true">|</span> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <input name="latitude" type="hidden" id="latitude" />
+                    <input name="longitude" type="hidden" id="longitude" />
+                  </div>
+                  <div class="text-field">
+                    <p class="label">Alamat Lengkap</p>
+                    <textarea class="input-textarea" name="alamat" placeholder="Write Here ..."></textarea>
+                  </div>
+                </div>
+                <div class="sub-form-berlangganan !border-none">
+                  <div class="sub-form-header">
+                    <div class="sub-form-label">
+                      <p class="text-xl leading-none font-bold tracking-tight text-gray-900">Pilih Paket</p>
+                      <p class="text-sm text-gray-600">Silahkan Pilih Paket terbaik yang kami tawarkan.</p>
+                    </div>
+                    <span class="chevron-form !hidden">
+                      <img src="https://g-fiber.co.id/img/webimg/chevron-right-b.svg" alt="" class="size-6" />
+                    </span>
+                  </div>
+                  <div class="form-paket-internet">
+                    <ul class="form-tab-paket">
+                      <li class="active" onclick="switchTab('residen')">Residential</li>
+                      <li onclick="switchTab('stream')">Streaming</li>
+                      <li onclick="switchTab('plustv')">Plus TV</li>
+                    </ul>
+                    <div class="form-list-paket active" id="residen">
+                      <div class="form-card-paket" data-product-id="1" data-price="166500" data-install="1" data-name="BASIC FAST" data-speed="20">
+                        <div class="form-header-card bg-r1">BASIC FAST<span class="bg-r2">20 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">166.500</span>/Bulan</div>
+                      </div>
+                      <div class="form-card-paket" data-product-id="2" data-price="183150" data-install="1" data-name="SUPER FAST" data-speed="35">
+                        <div class="form-header-card bg-r1">SUPER FAST<span class="bg-r2">35 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">183.150</span>/Bulan</div>
+                      </div>
+                      <div class="form-card-paket" data-product-id="3" data-price="205350" data-install="1" data-name="ULTRA FAST" data-speed="50">
+                        <div class="form-header-card bg-r1">ULTRA FAST<span class="bg-r2">50 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">205.350</span>/Bulan</div>
+                      </div>
+                    </div>
+                    <div class="form-list-paket" id="stream">
+                      <div class="form-card-paket" data-product-id="4" data-price="275000" data-install="1" data-name="META FAST" data-speed="75">
+                        <div class="form-header-card bg-s1">META FAST<span class="bg-s2">75 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">275.000</span>/Bulan</div>
+                      </div>
+                      <div class="form-card-paket" data-product-id="5" data-price="315000" data-install="1" data-name="ZETA FAST" data-speed="100">
+                        <div class="form-header-card bg-s1">ZETA FAST<span class="bg-s2">100 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">315.000</span>/Bulan</div>
+                      </div>
+                      <div class="form-card-paket" data-product-id="6" data-price="370000" data-install="1" data-name="TERA FAST" data-speed="150">
+                        <div class="form-header-card bg-s1">TERA FAST<span class="bg-s2">150 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">370.000</span>/Bulan</div>
+                      </div>
+                    </div>
+                    <div class="form-list-paket" id="plustv">
+                      <div class="form-card-paket" data-product-id="7" data-price="360000" data-install="1" data-name="FASTREAM LITE" data-speed="75">
+                        <div class="form-header-card bg-t1">FASTREAM LITE<span class="bg-t2">75 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">360.000</span>/Bulan</div>
+                      </div>
+                      <div class="form-card-paket" data-product-id="8" data-price="400000" data-install="1" data-name="FASTREAM MID" data-speed="100">
+                        <div class="form-header-card bg-t1">FASTREAM MID<span class="bg-t2">100 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">400.000</span>/Bulan</div>
+                      </div>
+                      <div class="form-card-paket" data-product-id="9" data-price="455000" data-install="1" data-name="FASTREAM PRO" data-speed="150">
+                        <div class="form-header-card bg-t1">FASTREAM PRO<span class="bg-t2">150 Mbps</span></div>
+                        <div class="form-price-card text-sm text-gray-700">Rp <span class="text-xl font-bold text-gray-900">455.000</span>/Bulan</div>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="product_id" id="paket-product" />
+                  <input type="hidden" name="installasi" id="biayainstallasi" />
+                  <input type="hidden" name="addon_id" value="1" />
+                  <div class="form-persetujuan">
+                    <input type="checkbox" id="persetujuan" name="persetujuan" value="1" class="input-checkbox" />
+                    <div class="flex flex-col gap-1">
+                      <label for="persetujuan" class="text-sm tracking-tight font-medium text-special">Saya menyetujui bahwa data diri tersebut akan digunakan untuk proses registrasi G-Fiber Indonesia</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-berlangganan-right flex-1" id="right-form">
+                <div class="form-pilih-paket">
+                  <div class="sub-form-header">
+                    <div class="sub-form-label">
+                      <p class="text-xl leading-none font-bold tracking-tight text-gray-900">Preview Pesanan</p>
+                    </div>
+                  </div>
+                  <div class="preview-pesanan">
+                    <div class="flex justify-between">
+                      <p class="text-sm font-semibold" id="namapaket">Product</p>
+                      <p class="text-sm font-semibold" id="hargapaket">-</p>
+                    </div>
+                    <div class="flex justify-between">
+                      <p class="text-sm font-semibold">Add On</p>
+                      <p class="text-sm font-semibold" id="addonpaket">-</p>
+                    </div>
+                    <div class="flex justify-between">
+                      <p class="text-sm font-semibold">Biaya Pemasangan</p>
+                      <p class="text-sm font-semibold" id="installasipaket">-</p>
+                    </div>
+                  </div>
+                  <p class="text-xs text-gray-700">*Harga diatas belum termasuk biaya tambahan kabel, jika panjangnya lebih dari 200 meter</p>
+                  <div class="total-pesanan">
+                    <div>
+                      <p class="text-sm text-gray-900">Total</p>
+                      <p class="text-xl font-bold tracking-tight" id="totalpesanan">-</p>
+                    </div>
+                    <button type="submit" class="btn-medium-icon mt-2 bg-cyan-500 hover:bg-cyan-600" disabled="">Kirim Data<img src="https://g-fiber.co.id/img/webimg/arrowrightup.svg" alt="" class="size-6" /></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function selectPackage(card) {
+        document.querySelectorAll(".package-card").forEach(function (el) {
+          el.classList.remove("selected");
+        });
+        card.classList.add("selected");
+        var title = card.querySelector(".package-title").innerText;
+        var speed = card.querySelector(".package-speed").innerText;
+        var price = card.querySelector(".package-price").innerText;
+        document.getElementById("preview-product").innerText = title + " (" + speed + ")";
+        document.getElementById("preview-total").innerText = price;
+      }
+      document.querySelector(".form-select").addEventListener("change", function () {
+        var addon = this.options[this.selectedIndex].text;
+        document.getElementById("preview-addon").innerText = addon === "Pilih Add On" ? "-" : addon;
+      });
+    </script>
+  </body>
+</html>

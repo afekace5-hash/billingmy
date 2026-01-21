@@ -1,0 +1,32 @@
+<!-- This is a placeholder file for invoice template image -->
+<!-- In a real application, you would have actual images here -->
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="modernGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#007bff;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#6f42c1;stop-opacity:0.8"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="300" height="200" fill="#ffffff" stroke="#007bff" stroke-width="2"/>
+  <rect x="0" y="0" width="300" height="50" fill="url(#modernGradient)"/>
+  
+  <text x="150" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Template 2</text>
+  <text x="150" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Template Modern</text>
+  
+  <!-- Mock modern invoice layout -->
+  <circle cx="40" cy="80" r="15" fill="#007bff" opacity="0.2"/>
+  <text x="65" y="85" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#007bff">INVOICE #INV-001</text>
+  
+  <rect x="20" y="100" width="120" height="8" fill="#007bff" opacity="0.3" rx="4"/>
+  <rect x="20" y="115" width="100" height="6" fill="#6c757d" opacity="0.2" rx="3"/>
+  <rect x="20" y="128" width="140" height="6" fill="#6c757d" opacity="0.2" rx="3"/>
+  
+  <rect x="160" y="100" width="120" height="8" fill="#007bff" opacity="0.3" rx="4"/>
+  <rect x="160" y="115" width="100" height="6" fill="#6c757d" opacity="0.2" rx="3"/>
+  <rect x="160" y="128" width="80" height="6" fill="#6c757d" opacity="0.2" rx="3"/>
+  
+  <rect x="20" y="150" width="260" height="30" fill="url(#modernGradient)" opacity="0.1" rx="15"/>
+  <text x="150" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#007bff">Total: Rp 150.000</text>
+</svg>

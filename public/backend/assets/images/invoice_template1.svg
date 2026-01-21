@@ -1,0 +1,23 @@
+<!-- This is a placeholder file for invoice template image -->
+<!-- In a real application, you would have actual images here -->
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <text x="150" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#495057">Template 1</text>
+  <text x="150" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#6c757d">Template Klasik</text>
+  
+  <!-- Mock invoice layout -->
+  <rect x="20" y="80" width="260" height="15" fill="#007bff" opacity="0.1"/>
+  <text x="25" y="92" font-family="Arial, sans-serif" font-size="10" fill="#495057">INVOICE #INV-001</text>
+  
+  <rect x="20" y="105" width="120" height="10" fill="#6c757d" opacity="0.2"/>
+  <rect x="20" y="120" width="100" height="8" fill="#6c757d" opacity="0.2"/>
+  <rect x="20" y="133" width="140" height="8" fill="#6c757d" opacity="0.2"/>
+  
+  <rect x="160" y="105" width="120" height="10" fill="#6c757d" opacity="0.2"/>
+  <rect x="160" y="120" width="100" height="8" fill="#6c757d" opacity="0.2"/>
+  <rect x="160" y="133" width="80" height="8" fill="#6c757d" opacity="0.2"/>
+  
+  <rect x="20" y="155" width="260" height="25" fill="#28a745" opacity="0.1"/>
+  <text x="150" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#28a745">Total: Rp 150.000</text>
+</svg>

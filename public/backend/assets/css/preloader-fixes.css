@@ -1,0 +1,269 @@
+/**
+ * Preloader CSS Fixes
+ * Mengatasi masalah preloader yang stuck dan mengganggu UI
+ */
+
+/* Force hide preloader when needed */
+.preloader-force-hide,
+.preloader-force-hide #preloader {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Modal specific preloader fixes */
+.modal.show ~ #preloader,
+.modal[style*="display: block"] ~ #preloader {
+  display: none !important;
+  z-index: 1040 !important; /* Lower than modal */
+}
+
+/* Prevent preloader from showing above modals */
+.modal-open #preloader {
+  display: none !important;
+}
+
+/* Loading button states */
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.btn-loading.btn-outline-primary::after,
+.btn-loading.btn-outline-secondary::after {
+  border-top-color: currentColor;
+}
+
+/* Spinner animations */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Form loading states */
+.form-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.form-loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.form-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 2px solid #dee2e6;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 11;
+}
+
+/* DataTable loading fix */
+.dataTables_processing {
+  z-index: 1050 !important; /* Above modals */
+}
+
+/* Modal loading overlay */
+.modal-loading {
+  position: relative;
+}
+
+.modal-loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1055;
+}
+
+.modal-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border: 3px solid #dee2e6;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 1056;
+}
+
+/* SweetAlert2 z-index fix */
+.swal2-container {
+  z-index: 2050 !important;
+}
+
+/* Preloader fade animations */
+.preloader-fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.preloader-fade-out {
+  animation: fadeOut 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Utility classes for loading states */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #dee2e6;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Hide scrollbar when preloader is active */
+body.preloader-active {
+  overflow: hidden;
+}
+
+/* Responsive preloader */
+@media (max-width: 768px) {
+  #preloader .preloader-logo {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  #preloader .preloader-text {
+    font-size: 12px !important;
+  }
+}
+
+/* Fix for Select2 in modals */
+.modal .select2-container {
+  z-index: 1055;
+}
+
+/* Fix for DatePicker in modals */
+.modal .datepicker {
+  z-index: 1055;
+}
+
+/* Loading text utility */
+.loading-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+/* Disable interaction during loading */
+.interaction-disabled {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Loading backdrop for specific elements */
+.loading-backdrop {
+  position: relative;
+}
+
+.loading-backdrop::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 5;
+  display: none;
+}
+
+.loading-backdrop.loading::before {
+  display: block;
+}
+
+/* Custom preloader colors */
+.preloader-primary .loading-spinner {
+  border-top-color: #007bff;
+}
+
+.preloader-success .loading-spinner {
+  border-top-color: #28a745;
+}
+
+.preloader-warning .loading-spinner {
+  border-top-color: #ffc107;
+}
+
+.preloader-danger .loading-spinner {
+  border-top-color: #dc3545;
+}

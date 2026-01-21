@@ -1,0 +1,35 @@
+/* Preserve larger radius for explicitly customized buttons */
+.btn.custom-radius,
+button.btn.custom-radius,
+a.btn.custom-radius,
+input.btn.custom-radius {
+  font-size: 13px !important;
+  border-radius: 16px !important;
+  padding: 10px 20px !important;
+}
+
+/* Global override: ensure all cards have rounded corners */
+/* This uses !important to beat other theme files that set radius to 0 */
+.card,
+.card-body,
+.mini-stats-wid {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+}
+
+/* header/footer corners */
+.card .card-header {
+  border-top-left-radius: 18px !important;
+  border-top-right-radius: 18px !important;
+}
+.card .card-footer {
+  border-bottom-left-radius: 18px !important;
+  border-bottom-right-radius: 18px !important;
+}
+
+/* Icon utilities */
+.icon-xl {
+  font-size: 40px !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}

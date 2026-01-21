@@ -1,0 +1,212 @@
+.paket-internet .paket-features {
+  border: 1px dashed #e57373;
+  background: #fffbe7;
+  border-radius: 8px;
+  padding: 10px 8px 10px 8px;
+  margin: 12px 0 16px 0 !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+.paket-internet .paket-features li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  margin-bottom: 8px !important;
+  line-height: 1.35 !important;
+  font-size: 0.95em !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+  background: transparent !important;
+}
+.paket-internet .paket-features li img {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+  margin-top: 3px !important;
+  background: #fff !important;
+  border-radius: 4px !important;
+}
+.paket-internet .paket-features li span {
+  margin: 0 !important;
+  display: block !important;
+  flex: 1 !important;
+}
+/* Style untuk list fitur paket internet agar rapi */
+.paket-internet .paket-features {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 16px 0;
+  font-size: 0.95em;
+  color: #444;
+  width: auto;
+}
+.paket-internet .paket-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  line-height: 1.35;
+  font-size: 0.95em;
+  font-weight: 500;
+  color: #374151;
+}
+.paket-internet .paket-features li img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.paket-internet .paket-features li span {
+  margin: 0;
+  display: block;
+}
+.paket-residential {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 32px 0;
+}
+
+.paket-internet {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0 12px 18px 12px;
+  box-sizing: border-box;
+}
+
+.internet-card.bg-r1 {
+  background: linear-gradient(135deg, #29b6f6 60%, #4fc3f7 100%);
+  border-radius: 18px 18px 0 0;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.italic {
+  font-style: italic;
+}
+.text-white {
+  color: #fff;
+}
+.ml-4 {
+  margin-left: 1rem;
+}
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.info-paket.bg-r2 {
+  background: #1976d2;
+  border-radius: 0 0 18px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 18px 12px 18px;
+}
+
+.info-mbps .f-50 {
+  font-size: 2.5em;
+  font-weight: 800;
+  margin-bottom: 0;
+  color: #fff;
+}
+.upto-mbps {
+  margin-left: 8px;
+  color: #fff;
+}
+.upto-mbps p {
+  margin: 0;
+  line-height: 1.1;
+}
+
+#price {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+#price .text-gray-500 {
+  color: #6b7280;
+}
+#price .text-slate-800 {
+  color: #1e293b;
+}
+#price .text-3xl {
+  font-size: 1.875rem;
+  font-weight: 800;
+}
+
+.line-paket {
+  display: block;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 12px 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Old styles - no longer used */
+/*
+.list-paket-point {
+  margin: 0 18px 0 18px;
+}
+.paket-point {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.paket-point img {
+  width: 24px;
+  height: 24px;
+}
+.paket-point p {
+  margin: 0;
+  color: #374151;
+  font-size: 0.95em;
+}
+*/
+
+.cta-paket-internet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 18px 0 18px;
+}
+.cta-paket-internet a {
+  flex: 1;
+  background: #1976d2;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.cta-paket-internet a:hover {
+  background: #1565c0;
+}
+.cta-paket-internet button {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+.cta-paket-internet button img {
+  width: 20px;
+  height: 20px;
+}

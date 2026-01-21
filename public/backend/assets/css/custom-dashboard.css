@@ -1,0 +1,1052 @@
+/* Custom Dashboard Styles */
+
+/* Dashboard Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Button pulse effect on focus */
+.modal-body .btn:focus {
+  animation: btn-pulse 1.5s infinite;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.3);
+}
+
+@keyframes btn-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(66, 133, 244, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(66, 133, 244, 0);
+  }
+}
+
+/* Card Enhancements */
+.dashboard-card {
+  animation: fadeInUp 0.6s ease-out;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Welcome Card */
+.welcome-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.welcome-card .welcome-content {
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-card h5 {
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Stats Cards */
+.mini-stats-wid {
+  animation: slideInLeft 0.6s ease-out;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.mini-stats-wid:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom Gradients */
+.bg-gradient-blue {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-green {
+  background: linear-gradient(135deg, #5ee7df 0%, #66a6ff 100%);
+}
+
+.bg-gradient-yellow {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.bg-gradient-pink {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+.bg-gradient-purple {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.bg-gradient-orange {
+  background: linear-gradient(135deg, #ff8a80 0%, #ffcc70 100%);
+}
+
+/* Enhanced Stat Cards */
+.stat-card-enhanced {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.stat-card-enhanced::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.stat-card-enhanced:hover::before {
+  left: 100%;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-card-enhanced:hover .stat-number {
+  transform: scale(1.1);
+}
+
+/* Icon Enhancements */
+.stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.stat-card-enhanced:hover .stat-icon {
+  transform: rotate(360deg);
+  opacity: 1;
+}
+
+/* Profile Section Enhancement */
+.profile-section {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.profile-avatar {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Profile Image Enhancement */
+.profile-pic img {
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  aspect-ratio: 1/1 !important;
+  border: 3px solid #e9ecef !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.profile-pic img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+  border-color: #007bff !important;
+}
+
+.profile-pic {
+  position: relative !important;
+  display: inline-block !important;
+  margin-bottom: 1rem !important;
+}
+
+.online-indicator {
+  position: absolute !important;
+  bottom: 8px !important;
+  right: 8px !important;
+  width: 16px !important;
+  height: 16px !important;
+  border: 3px solid white !important;
+  border-radius: 50% !important;
+  background-color: #28a745 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Chart Container Enhancement */
+.chart-container {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.chart-container:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Monthly Earning Card */
+.earning-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+}
+
+.earning-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Enhancements */
+.btn-enhanced {
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-enhanced::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.btn-enhanced:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-enhanced:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Button loading state */
+.modal-body .btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+  position: relative;
+}
+
+.modal-body .btn.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced card hover animation */
+.modal-body .card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modal-body .card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon animation improvements */
+.modal-body .card .display-4 {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modal-body .card:hover .display-4 {
+  transform: scale(1.2) rotate(10deg);
+  filter: brightness(1.1);
+}
+
+/* Loading Animation for Stats */
+.stat-loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .dashboard-card {
+    margin-bottom: 1rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+}
+
+/* Custom rounded borders */
+.rounded-top-right-bottom-left {
+  border-radius: 15px 15px 15px 15px;
+}
+
+/* Smooth page transitions */
+.page-content {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Enhanced breadcrumb */
+.breadcrumb-item a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: #495057;
+}
+
+/* Card title enhancement */
+.card-title {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 1.5rem;
+}
+
+/* Custom scrollbar for chart areas */
+.chart-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chart-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.chart-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.chart-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Notification dots for stats */
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #28a745;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  animation: pulse 2s infinite;
+}
+
+/* Enhanced text styling */
+.text-enhanced {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Glassmorphism effect for certain elements */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 15px;
+}
+
+/* Soft Button Styles */
+.btn-soft-primary {
+  color: #556ee6;
+  background-color: rgba(85, 110, 230, 0.1);
+  border-color: rgba(85, 110, 230, 0.1);
+}
+
+.btn-soft-primary:hover {
+  color: #fff;
+  background-color: #556ee6;
+  border-color: #556ee6;
+}
+
+.btn-soft-success {
+  color: #34c38f;
+  background-color: rgba(52, 195, 143, 0.1);
+  border-color: rgba(52, 195, 143, 0.1);
+}
+
+.btn-soft-success:hover {
+  color: #fff;
+  background-color: #34c38f;
+  border-color: #34c38f;
+}
+
+.btn-soft-info {
+  color: #50a5f1;
+  background-color: rgba(80, 165, 241, 0.1);
+  border-color: rgba(80, 165, 241, 0.1);
+}
+
+.btn-soft-info:hover {
+  color: #fff;
+  background-color: #50a5f1;
+  border-color: #50a5f1;
+}
+
+.btn-soft-warning {
+  color: #f1b44c;
+  background-color: rgba(241, 180, 76, 0.1);
+  border-color: rgba(241, 180, 76, 0.1);
+}
+
+.btn-soft-warning:hover {
+  color: #fff;
+  background-color: #f1b44c;
+  border-color: #f1b44c;
+}
+
+/* Quick Action Buttons */
+.btn-soft-primary,
+.btn-soft-success,
+.btn-soft-info,
+.btn-soft-warning {
+  padding: 15px 10px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-soft-primary:hover,
+.btn-soft-success:hover,
+.btn-soft-info:hover,
+.btn-soft-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Time and Date Display Enhancement */
+.time-display {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.date-time {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Notification Enhancement */
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  animation: pulse 2s infinite;
+}
+
+/* Navigation Shortcuts Enhancement */
+.btn-outline-primary:hover,
+.btn-outline-success:hover,
+.btn-outline-info:hover,
+.btn-outline-warning:hover,
+.btn-outline-secondary:hover,
+.btn-outline-danger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Navigation buttons */
+.btn-outline-primary,
+.btn-outline-success,
+.btn-outline-info,
+.btn-outline-warning,
+.btn-outline-secondary,
+.btn-outline-danger {
+  transition: all 0.3s ease;
+  border-width: 1.5px;
+  font-weight: 500;
+}
+
+/* Dropdown menu enhancement */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  margin: 0 0.5rem;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transform: translateX(5px);
+}
+
+.dropdown-item i {
+  width: 20px;
+}
+
+/* Profile button enhancement */
+.btn-light.btn-enhanced {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.btn-light.btn-enhanced:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Modal Enhancement */
+.modal-content {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px 15px 0 0;
+}
+
+.modal-footer {
+  border-top: 1px solid #e9ecef;
+  border-radius: 0 0 15px 15px;
+}
+
+/* Laporan Modal Cards */
+.modal-body .card {
+  transition: all 0.3s ease;
+  border-width: 2px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-body .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-body .card .display-4 {
+  transition: all 0.3s ease;
+  font-size: 3rem;
+}
+
+.modal-body .card:hover .display-4 {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Modal buttons use Bootstrap default styling */
+
+/* Enhanced card spacing and layout */
+.modal-body .card {
+  margin-bottom: 1.5rem;
+  height: auto;
+  min-height: 280px;
+}
+
+.modal-body .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.modal-body .card-text {
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* Icon sizing for modal cards */
+.modal-body .display-4 {
+  font-size: 2.5rem !important;
+  margin-bottom: 0.75rem;
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 768px) {
+  .modal-body .card-body {
+    padding: 1rem 0.75rem;
+  }
+
+  .modal-body .display-4 {
+    font-size: 2rem !important;
+  }
+
+  .modal-body .btn {
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    min-width: 140px;
+    margin-bottom: 8px;
+  }
+
+  .modal-body .card-title {
+    font-size: 1rem;
+  }
+
+  .modal-body .card {
+    min-height: 260px;
+    margin-bottom: 1rem;
+  }
+
+  .modal-footer .btn {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    margin: 2px;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-body .btn {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    min-width: 120px;
+  }
+
+  .modal-body .card {
+    min-height: 240px;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    margin: 2px 0;
+  }
+}
+
+/* Enhanced modal body spacing */
+.modal-body .card-body {
+  padding: 1.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Profile Card Contact Buttons */
+.contact-buttons .btn {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.25rem;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  white-space: nowrap;
+}
+
+.contact-buttons .btn i {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.contact-buttons .btn small {
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.contact-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-buttons .btn-warning {
+  background-color: #ff9500;
+  border-color: #ff9500;
+  color: white;
+}
+
+.contact-buttons .btn-warning:hover {
+  background-color: #e6850e;
+  border-color: #e6850e;
+  color: white;
+}
+
+.contact-buttons .btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.contact-buttons .btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+  color: white;
+}
+
+.contact-buttons .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.contact-buttons .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+  color: white;
+}
+
+/* Document Status Buttons */
+.document-status .btn {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.375rem 0.5rem;
+  border-radius: 1rem !important;
+  transition: all 0.3s ease;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.document-status .btn i {
+  font-size: 0.8rem;
+  margin-right: 0.25rem;
+}
+
+.document-status .btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+.document-status .btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+  color: #212529;
+  transform: scale(1.05);
+}
+
+.document-status .btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.document-status .btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  color: white;
+  transform: scale(1.05);
+}
+
+.document-status p {
+  font-size: 0.75rem;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+/* Profile Card layout improvements */
+.contact-buttons {
+  margin: 1.5rem 0;
+}
+
+.document-status {
+  margin-top: 1rem;
+}
+
+.contact-buttons .row,
+.document-status .row {
+  margin: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.contact-buttons .col-4,
+.document-status .col-4 {
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure equal height for all buttons in a row */
+.contact-buttons .row {
+  min-height: 60px;
+}
+
+.document-status .row {
+  min-height: 60px;
+}
+
+.document-status .col-4 > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+/* Ensure consistent button widths */
+.w-100 {
+  width: 100% !important;
+}
+
+/* Gap utility enhancement */
+.g-2 {
+  --bs-gutter-x: 0.5rem;
+  --bs-gutter-y: 0.5rem;
+}
+
+/* Perfect Button Alignment for Profile Card */
+.contact-buttons .row,
+.document-status .row {
+  --bs-gutter-x: 0.5rem;
+  --bs-gutter-y: 0;
+  margin-left: calc(var(--bs-gutter-x) * -0.5);
+  margin-right: calc(var(--bs-gutter-x) * -0.5);
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+.contact-buttons .col-4,
+.document-status .col-4 {
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  flex: 1 1 33.333333% !important;
+  max-width: 33.333333% !important;
+  min-width: 0 !important;
+}
+
+/* Ensure buttons fill their containers completely */
+.contact-buttons .btn,
+.document-status .btn {
+  flex: 1;
+  margin: 0;
+}
+
+/* Text alignment for document status */
+.document-status .text-center {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.document-status .text-center p {
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+  font-size: 0.75rem !important;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.document-status .text-center .btn {
+  margin-top: auto;
+  font-size: 0.7rem !important;
+  padding: 0.25rem 0.5rem !important;
+  white-space: nowrap;
+  min-height: auto;
+}
+
+/* Remove any default margins that might cause misalignment */
+.contact-buttons .btn,
+.document-status .btn {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-buttons .btn {
+    height: 50px;
+    font-size: 0.65rem;
+  }
+
+  .contact-buttons .btn i {
+    font-size: 1rem;
+  }
+
+  .contact-buttons .btn small {
+    font-size: 0.6rem;
+  }
+
+  .document-status .btn {
+    font-size: 0.6rem !important;
+    height: 24px;
+    padding: 0.15rem 0.3rem !important;
+  }
+
+  .document-status p {
+    font-size: 0.65rem !important;
+  }
+
+  /* Ensure single row on mobile */
+  .document-status .row {
+    flex-wrap: nowrap !important;
+  }
+
+  .document-status .col-4 {
+    flex: 1 1 33.333333% !important;
+    max-width: 33.333333% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* Profile Card spacing improvements */
+.card .card-body {
+  padding: 1.5rem;
+}
+
+.contact-buttons {
+  margin: 1rem 0;
+}
+
+.document-status {
+  margin-top: 1rem;
+}
+
+/* Gap utility for flexbox */
+.gap-2 {
+  gap: 0.5rem !important;
+}
+
+.g-2 > * {
+  margin: 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-buttons .btn {
+    font-size: 0.7rem;
+    min-width: 60px;
+  }
+
+  .document-status .btn {
+    font-size: 0.65rem;
+    min-width: 50px;
+  }
+}

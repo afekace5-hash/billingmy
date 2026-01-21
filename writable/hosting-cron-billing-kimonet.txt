@@ -1,0 +1,126 @@
+===============================================
+📋 HOSTING CRON SETUP - billing.kimonet.my.id
+===============================================
+
+🎯 KONFIGURASI CRON JOB UNTUK DOMAIN: https://billing.kimonet.my.id/
+
+===============================================
+⏰ CRON JOB CONFIGURATION
+===============================================
+
+📌 UNTUK CPANEL HOSTING:
+1. Login ke CPanel hosting Anda
+2. Cari menu "Cron Jobs" atau "Scheduled Tasks"
+3. Tambahkan cron job baru dengan setting berikut:
+
+   ┌─────────────────────────────────────────────────────────────┐
+   │ CRON JOB UTAMA - WHATSAPP BILLING NOTIFICATION             │
+   ├─────────────────────────────────────────────────────────────┤
+   │ Minute: 0                                                   │
+   │ Hour: 9                                                     │
+   │ Day: *                                                      │
+   │ Month: *                                                    │
+   │ Weekday: *                                                  │
+   │ Command: curl -s "https://billing.kimonet.my.id/whatsapp/billing/send-all" >/dev/null 2>&1 │
+   └─────────────────────────────────────────────────────────────┘
+
+   📋 Penjelasan: Cron ini akan berjalan setiap hari jam 09:00 WIB
+
+📌 ALTERNATIF WAKTU PENGIRIMAN:
+
+   🌅 JAM 08:00 WIB (Pagi):
+   0 8 * * * curl -s "https://billing.kimonet.my.id/whatsapp/billing/send-all" >/dev/null 2>&1
+
+   🌆 JAM 18:00 WIB (Sore):
+   0 18 * * * curl -s "https://billing.kimonet.my.id/whatsapp/billing/send-all" >/dev/null 2>&1
+
+   ⏰ 2x SEHARI (Pagi & Sore):
+   0 8,18 * * * curl -s "https://billing.kimonet.my.id/whatsapp/billing/send-all" >/dev/null 2>&1
+
+📌 UNTUK HOSTING TANPA CPANEL (SSH/Terminal):
+   Jalankan command: crontab -e
+   Tambahkan baris:
+   0 9 * * * curl -s "https://billing.kimonet.my.id/whatsapp/billing/send-all" >/dev/null 2>&1
+
+📌 UNTUK EXTERNAL CRON SERVICES:
+   
+   🔗 cron-job.org:
+   - URL: https://billing.kimonet.my.id/whatsapp/billing/send-all
+   - Schedule: 0 9 * * *
+   - Title: Kimonet WhatsApp Billing
+
+   🔗 setcronjob.com:
+   - URL: https://billing.kimonet.my.id/whatsapp/billing/send-all
+   - Time: Daily at 09:00
+
+===============================================
+🚀 ENDPOINT YANG TERSEDIA
+===============================================
+
+🌐 MAIN ENDPOINT (untuk cron):
+https://billing.kimonet.my.id/whatsapp/billing/send-all
+
+🌐 SPECIFIC ENDPOINTS:
+https://billing.kimonet.my.id/whatsapp/billing/send/due_date
+https://billing.kimonet.my.id/whatsapp/billing/send/h_minus_1
+https://billing.kimonet.my.id/whatsapp/billing/send/h_minus_3
+https://billing.kimonet.my.id/whatsapp/billing/send/h_minus_7
+https://billing.kimonet.my.id/whatsapp/billing/send/payment_confirmation
+
+🌐 TEST ENDPOINT:
+https://billing.kimonet.my.id/whatsapp/billing/test
+
+===============================================
+🔧 SETUP WHATSAPP
+===============================================
+
+1. 📱 Buka: https://billing.kimonet.my.id/whatsapp
+2. 📲 Scan QR Code untuk connect WhatsApp device
+3. ✅ Aktifkan semua notifikasi yang diinginkan
+4. 💾 Klik "Simpan" untuk menyimpan pengaturan
+
+===============================================
+🧪 TEST & VERIFY
+===============================================
+
+1. 🔍 Test manual cron:
+   curl "https://billing.kimonet.my.id/whatsapp/billing/send-all"
+
+2. 🔍 Test notifikasi:
+   https://billing.kimonet.my.id/whatsapp/billing/test
+
+3. 📊 Cek log database:
+   Tabel: whatsapp_message_logs
+   Field: status, notification_type, created_at
+
+===============================================
+⚠️ TROUBLESHOOTING
+===============================================
+
+❌ Cron tidak jalan?
+   → Cek syntax cron job di hosting panel
+   → Test manual dengan curl command
+   → Cek log hosting untuk error
+
+❌ Notifikasi tidak terkirim?
+   → Pastikan WhatsApp device connected
+   → Cek setting notifikasi di /whatsapp
+   → Cek database whatsapp_message_logs
+
+❌ Error 404/500?
+   → Pastikan routing sudah benar
+   → Cek file .htaccess
+   → Cek permission folder writable/
+
+===============================================
+✅ SISTEM SIAP DIGUNAKAN!
+===============================================
+
+Setelah setup selesai:
+✓ Notifikasi tagihan otomatis setiap hari
+✓ Reminder H-1, H-3, H-7 otomatis
+✓ Konfirmasi pembayaran otomatis
+✓ Log lengkap di database
+✓ Tidak ada duplikasi pengiriman
+
+Support: https://billing.kimonet.my.id/whatsapp/system-info

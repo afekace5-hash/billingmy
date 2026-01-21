@@ -1,0 +1,511 @@
+/* Payment Methods Mobile Style */
+@media (max-width: 768px) {
+  .swal2-container.payment-modal-mobile .swal2-popup {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .payment-modal-header {
+    background: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .payment-modal-header .back-btn {
+    width: 32px;
+    height: 32px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .payment-modal-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .payment-methods-container {
+    padding: 15px;
+    background: #f9fafb;
+    min-height: calc(100vh - 60px);
+  }
+
+  /* Payment Confirmation Screen */
+  .payment-confirmation-container {
+    padding: 15px;
+    background: #f9fafb;
+    min-height: calc(100vh - 60px);
+  }
+
+  .confirmation-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .confirmation-card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6b52ae;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .confirmation-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+  }
+
+  .confirmation-row:not(:last-child) {
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .confirmation-label {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 400;
+  }
+
+  .confirmation-value {
+    font-size: 13px;
+    color: #1f2937;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .confirmation-row.total {
+    padding-top: 12px;
+    margin-top: 8px;
+  }
+
+  .confirmation-row.total .confirmation-label,
+  .confirmation-row.total .confirmation-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #6b52ae;
+  }
+
+  .bank-selection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .bank-selection:hover {
+    border-color: #6b52ae;
+    background: #f9fafb;
+  }
+
+  .bank-logo-box {
+    width: 50px;
+    height: 50px;
+    background: #f3f4f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .bank-logo-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .bank-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .process-payment-btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .process-payment-btn button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #6b52ae 0%, #8b6ac7 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .process-payment-btn button:active {
+    transform: scale(0.98);
+  }
+
+  .payment-method-item {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .payment-method-item:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .payment-method-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: #f9fafb;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .payment-method-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+
+  .payment-method-icon i {
+    font-size: 24px;
+    color: #6b7280;
+  }
+
+  .payment-method-details {
+    flex-grow: 1;
+  }
+
+  .payment-method-details h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+  }
+
+  .payment-method-details p {
+    font-size: 12px;
+    color: #9ca3af;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .payment-method-fee {
+    text-align: right;
+  }
+
+  .payment-method-fee .fee-amount {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .payment-method-fee .fee-amount.free {
+    color: #10b981;
+  }
+
+  .payment-method-fee .fee-amount.charged {
+    color: #ef4444;
+  }
+
+  .payment-method-fee .fee-amount.percent {
+    color: #f59e0b;
+  }
+
+  .payment-category-header {
+    font-size: 11px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 20px 0 12px 0;
+  }
+
+  .payment-category-header:first-child {
+    margin-top: 0;
+  }
+
+  /* Invoice Detail Screen */
+  .invoice-detail-container {
+    padding: 20px 15px;
+    background: #f9fafb;
+    min-height: calc(100vh - 60px);
+  }
+
+  .invoice-detail-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .invoice-detail-header h3 {
+    font-size: 15px;
+    color: #6b7280;
+    margin: 0 0 8px 0;
+    font-weight: 400;
+  }
+
+  .invoice-detail-header .amount {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 6px 0;
+  }
+
+  .invoice-detail-header .subtitle {
+    font-size: 13px;
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  .detail-section {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .detail-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f4f6;
+    margin-bottom: 12px;
+  }
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+
+  .detail-row:not(:last-child) {
+    border-bottom: 1px solid #f9fafb;
+  }
+
+  .detail-label {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 400;
+  }
+
+  .detail-value {
+    font-size: 13px;
+    color: #1f2937;
+    font-weight: 600;
+    text-align: right;
+    max-width: 60%;
+    word-wrap: break-word;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .status-badge.paid {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .status-badge.unpaid {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  .status-badge.pending {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .status-badge.failed {
+    background: #fecaca;
+    color: #7f1d1d;
+  }
+
+  .payment-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .payment-actions button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .payment-actions .btn-primary {
+    background: linear-gradient(135deg, #6b52ae 0%, #8b6ac7 100%);
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .payment-actions .btn-secondary {
+    background: white;
+    color: #6b52ae;
+    border: 2px solid #6b52ae;
+  }
+
+  .payment-actions button:active {
+    transform: scale(0.98);
+  }
+
+  /* Override SweetAlert2 styles for mobile */
+  .swal2-container.payment-modal-mobile .swal2-html-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+    max-height: calc(100vh - 60px) !important;
+  }
+
+  .swal2-container.payment-modal-mobile .swal2-title {
+    display: none !important;
+  }
+
+  .swal2-container.payment-modal-mobile .swal2-actions {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Desktop payment modal styling */
+  .payment-method-item {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+  }
+
+  .payment-method-item:hover {
+    border-color: #6366f1;
+    background: #f9fafb;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+  }
+
+  .payment-method-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background: #f9fafb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .payment-method-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .payment-method-details {
+    flex-grow: 1;
+  }
+
+  .payment-method-details h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 2px 0;
+  }
+
+  .payment-method-details p {
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  .payment-method-fee {
+    text-align: right;
+  }
+
+  .payment-method-fee .fee-amount {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .payment-method-fee .fee-amount.free {
+    color: #10b981;
+  }
+
+  .payment-method-fee .fee-amount.charged {
+    color: #ef4444;
+  }
+
+  .payment-category-header {
+    font-size: 11px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 16px 0 10px 0;
+  }
+}

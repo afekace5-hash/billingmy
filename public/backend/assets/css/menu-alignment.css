@@ -1,0 +1,101 @@
+/**
+ * Menu Alignment CSS
+ * Specific fixes for menu alignment issues
+ */
+
+/* Fix for dropdown menu alignment */
+.mm-collapse {
+  padding: 0.25rem 0;
+}
+
+/* Submenu item text alignment */
+.mm-collapse .nav-item a {
+  padding-left: 3rem !important;
+  position: relative;
+}
+
+/* Clean submenu style */
+.mm-collapse .nav-item a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: #6c757d;
+  opacity: 0.5;
+  border-radius: 50%;
+  position: absolute;
+  left: 1.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Better main menu icon alignment */
+.vertical-menu .nav-link i:first-child {
+  font-size: 1.15rem;
+  margin-right: 0.75rem;
+  width: 1.5rem;
+  text-align: center;
+  display: inline-block;
+}
+
+/* Fix for submenu text alignment */
+.vertical-menu .menu-title + .nav-item .nav-link {
+  margin-top: 0.5rem;
+}
+
+/* Main menu alignment with submenu */
+.vertical-menu .metismenu .menu-link {
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Right-aligned submenu indicator */
+.submenu-indicator {
+  position: absolute !important;
+  right: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  transition: transform 0.3s ease !important;
+  margin: 0 !important;
+  transform-origin: center !important;
+}
+
+/* Keep arrow in same position when expanded */
+.nav-link[aria-expanded="true"] .submenu-indicator {
+  right: 1rem !important;
+}
+
+/* Submenu hover effect */
+.mm-collapse .nav-item a:hover::before {
+  background-color: var(--bs-primary);
+  opacity: 1;
+}
+
+/* Specific fix for the submenu item */
+.metismenu .mm-collapse .nav-item {
+  padding: 0;
+  margin: 0;
+}
+
+/* Ensure submenu items have clean style */
+.metismenu .mm-collapse .nav-item a {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #545a6d;
+  font-size: 0.9rem;
+}
+
+/* Override any margins that may interfere */
+.metismenu li {
+  margin: 0;
+}
+
+/* Clear any bootstrap padding that might interfere */
+.nav {
+  padding-left: 0;
+}
+
+/* Main menu items styling */
+.metismenu > li > .menu-link {
+  margin-bottom: 0.25rem;
+}
