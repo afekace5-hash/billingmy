@@ -490,7 +490,6 @@ class Installation extends BaseController
             } else {
                 return ['success' => false, 'message' => 'Gagal menyimpan invoice prorata'];
             }
-
         } catch (\Exception $e) {
             log_message('error', 'Error generating prorata invoice: ' . $e->getMessage());
             return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
@@ -504,7 +503,7 @@ class Installation extends BaseController
     {
         $installDay = new \DateTime($installDate);
         $endOfMonth = new \DateTime($installDay->format('Y-m-t')); // Last day of month
-        
+
         // Calculate remaining days including installation date
         $remainingDays = $installDay->diff($endOfMonth)->days + 1;
         $totalDaysInMonth = $endOfMonth->format('j');
