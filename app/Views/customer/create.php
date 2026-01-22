@@ -407,6 +407,33 @@
                                 </div>
                             </div>
 
+                            <!-- Biaya Instalasi Section -->
+                            <div class="row mt-4 mb-4">
+                                <div class="col-12">
+                                    <div class="card border-info">
+                                        <div class="card-header bg-info text-white">
+                                            <h5 class="card-title mb-0"><i class="bx bx-money me-2"></i>Biaya Instalasi (Opsional)</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label class="form-label">Biaya Instalasi</label>
+                                                    <input type="number" class="form-control" name="biaya_pasang" id="biaya_pasang" placeholder="Biaya Instalasi (Rp)" min="0" step="1000">
+                                                    <small class="text-muted">Masukkan jumlah biaya instalasi dalam Rupiah</small>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label class="form-label">Biaya Tambahan Lainnya</label>
+                                                    <select class="form-select" name="additional_fee_id" id="additional_fee_id">
+                                                        <option value="">Pilih Biaya Tambahan (Opsional)</option>
+                                                    </select>
+                                                    <small class="text-muted">Pilih biaya tambahan jika ada</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Submit Button -->
                             <div class="row mt-4">
                                 <div class="col-12 text-end">
@@ -1132,10 +1159,56 @@
             });
         }
 
+        // Load biaya tambahan options
+        function loadBiayaTambahanOptions() {
+            const $select = $('#additional_fee_id');
+            const $spinner = document.getElementById('fee-load');
+
+            if ($spinner) $spinner.style.display = 'inline-block';
+
+            fetch('<?= site_url('biaya_tambahan/list') ?>')
+                .then(function(response) {
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    return response.json();
+                })
+                .then(function(response) {
+                    if ($spinner) $spinner.style.display = 'none';
+
+                    // Clear existing options
+                    $select.empty();
+                    $select.append(new Option('Pilih Biaya Tambahan (Opsional)', '', true, true));
+
+                    // Add options from response
+                    const fees = response.data || response;
+                    if (Array.isArray(fees) && fees.length > 0) {
+                        fees.forEach(function(fee) {
+                            const label = fee.nama_biaya + ' (Rp ' + (fee.jumlah_biaya || 0).toLocaleString('id-ID') + ')';
+                            $select.append(new Option(label, fee.id));
+                        });
+                    }
+
+                    // Reinitialize Select2
+                    if ($select.data('select2')) {
+                        $select.select2('destroy');
+                    }
+                    $select.select2({
+                        theme: 'bootstrap-5',
+                        width: '100%'
+                    });
+                })
+                .catch(function(err) {
+                    if ($spinner) $spinner.style.display = 'none';
+                    console.error('Gagal mengambil data biaya tambahan:', err);
+                });
+        }
+
+        // Load biaya tambahan when page loads
+        loadBiayaTambahanOptions();
+
         // Initialize Select2
         if (typeof $.fn.select2 !== 'undefined') {
             // Initialize all form-select except those that will be loaded dynamically
-            $('.form-select').not('#branch_id, #existing_customer_id, #id_paket, #area_id, #subscription_method').select2({
+            $('.form-select').not('#branch_id, #existing_customer_id, #id_paket, #area_id, #subscription_method, #additional_fee_id').select2({
                 theme: 'bootstrap-5',
                 width: '100%',
                 minimumResultsForSearch: Infinity // Hide search box for dropdowns with few options

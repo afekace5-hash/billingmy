@@ -18,7 +18,7 @@ class WhatsAppService
     /**
      * Send WhatsApp message
      */
-    public function sendMessage($number, $message, $sender = null)
+    public function sendMessage($number, $message, $sender = null, $templateType = 'general')
     {
         try {
             // Log the attempt
@@ -45,8 +45,8 @@ class WhatsAppService
             // Send message using configured service
             $result = $this->sendViaAPI($messageData);
 
-            // Log the result
-            $this->logMessage($number, $message, $result);
+            // Log the result with template type
+            $this->logMessage($number, $message, $result, $templateType);
 
             return $result;
         } catch (\Exception $e) {
@@ -78,8 +78,8 @@ class WhatsAppService
             // Get message template from database
             $message = $this->getNewCustomerTemplate($customerData);
 
-            // Send message
-            $result = $this->sendMessage($phoneNumber, $message);
+            // Send message with 'registration' template type
+            $result = $this->sendMessage($phoneNumber, $message, null, 'registration');
 
             // Log to WhatsApp message logs table
             $this->logToMessageTable($customerData, $phoneNumber, $message, $result);
@@ -249,14 +249,14 @@ class WhatsAppService
     /**
      * Log WhatsApp message
      */
-    private function logMessage($number, $message, $result)
+    private function logMessage($number, $message, $result, $templateType = 'general')
     {
         try {
             // Use the existing whatsapp_message_logs table instead of whatsapp_logs
             if ($this->db->tableExists('whatsapp_message_logs')) {
                 $this->db->table('whatsapp_message_logs')->insert([
                     'phone_number' => $number,
-                    'template_type' => 'general',
+                    'template_type' => $templateType,  // Use the provided template type
                     'message_content' => $message,
                     'status' => $result['success'] ? 'sent' : 'failed',
                     'error_message' => $result['success'] ? null : $result['message'],

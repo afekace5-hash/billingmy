@@ -283,7 +283,7 @@ class Installation extends BaseController
 
             // Send via WhatsApp Service
             $whatsappService = new \App\Services\WhatsAppService();
-            $result = $whatsappService->sendMessage($customer['telepphone'], $message);
+            $result = $whatsappService->sendMessage($customer['telepphone'], $message, null, 'activation');
 
             if ($result['success']) {
                 log_message('info', 'Installation WhatsApp sent to customer ' . $customer['id_customers']);
