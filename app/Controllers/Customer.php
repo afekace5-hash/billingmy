@@ -609,9 +609,12 @@ class Customer extends ResourceController
                     log_message('info', 'PPPoE credentials provided for customer: ' . $customerId . ', will be handled by AUTO PPPOE SYNC');
                 }
 
-                $successMessage = 'Pelanggan berhasil ditambahkan';
+                $successMessage = 'Pelanggan berhasil ditambahkan. Silakan proses di menu Installation untuk generate tagihan prorata.';
 
+                // REMOVE AUTO PRORATA - will be generated during Installation process instead
                 // AUTO GENERATE PRORATA INVOICE - If customer is marked as new customer
+                // Disabled - moved to Installation process where tgl_pasang is available
+                /*
                 if (isset($data['is_new_customer']) && $data['is_new_customer'] == 1) {
                     $prorataResult = $this->generateProrataInvoiceForCustomer($customerId, $data);
                     if ($prorataResult['success']) {
@@ -622,6 +625,7 @@ class Customer extends ResourceController
                         $successMessage .= ', namun tagihan prorata gagal dibuat: ' . $prorataResult['message'];
                     }
                 }
+                */
 
                 // AUTO PPPOE SYNC - Made optional to avoid blocking slow VPN connections
                 // Customer will be saved first, secret creation can be done later if needed

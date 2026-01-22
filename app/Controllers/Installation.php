@@ -69,15 +69,26 @@ class Installation extends BaseController
                 ]);
             }
 
-            // Update status to active
+            // Update status to active and set installation date
+            $tglPasang = date('Y-m-d');
             $this->customerModel->update($customerId, [
                 'status_tagihan' => 'enable',
-                'tgl_pasang' => date('Y-m-d')
+                'tgl_pasang' => $tglPasang
             ]);
+
+            // Generate prorata invoice after setting tgl_pasang
+            $prorataResult = $this->generateProrataInvoiceForCustomer($customerId, $tglPasang);
+
+            $message = 'Customer berhasil diproses untuk instalasi';
+            if ($prorataResult['success']) {
+                $message .= ' dan tagihan prorata berhasil dibuat';
+            } else {
+                $message .= ', namun tagihan prorata gagal dibuat: ' . $prorataResult['message'];
+            }
 
             return $this->response->setJSON([
                 'success' => true,
-                'message' => 'Customer berhasil diproses untuk instalasi'
+                'message' => $message
             ]);
         } catch (\Exception $e) {
             return $this->response->setJSON([
@@ -390,5 +401,134 @@ class Installation extends BaseController
         $data['title'] = 'Installation Detail';
 
         return view('installation/history_detail', $data);
+    }
+
+    /**
+     * Generate prorata invoice for newly installed customer
+     */
+    private function generateProrataInvoiceForCustomer($customerId, $installDate)
+    {
+        try {
+            log_message('info', 'Prorata invoice generation called for customer: ' . $customerId . ' on install date: ' . $installDate);
+
+            // Get customer data
+            $customer = $this->customerModel->find($customerId);
+            if (!$customer) {
+                return ['success' => false, 'message' => 'Customer tidak ditemukan'];
+            }
+
+            // Get installation date 
+            $installMonth = date('Y-m', strtotime($installDate));
+            $currentMonth = date('Y-m');
+
+            // Only generate prorata for current month installation
+            if ($installMonth !== $currentMonth) {
+                return ['success' => false, 'message' => 'Prorata hanya untuk pemasangan bulan ini'];
+            }
+
+            // Get package data
+            $paketId = $customer['id_paket'] ?? null;
+            if (!$paketId) {
+                return ['success' => false, 'message' => 'Paket customer tidak ditemukan'];
+            }
+
+            $db = \Config\Database::connect();
+            $paket = $db->table('package_profiles')
+                ->where('id', $paketId)
+                ->get()
+                ->getRow();
+
+            if (!$paket) {
+                return ['success' => false, 'message' => 'Data paket tidak ditemukan'];
+            }
+
+            // Calculate prorata
+            $monthlyPrice = $paket->price ?? 0;
+            $prorataCalculation = $this->calculateProrataAmount($installDate, $monthlyPrice);
+
+            if ($prorataCalculation['amount'] <= 0) {
+                return ['success' => false, 'message' => 'Jumlah prorata tidak valid'];
+            }
+
+            // Check if prorata invoice already exists
+            $invoiceModel = new \App\Models\InvoiceModel();
+            $existingInvoice = $invoiceModel->where([
+                'customer_id' => $customerId,
+                'periode' => $installMonth,
+                'is_prorata' => 1
+            ])->first();
+
+            if ($existingInvoice) {
+                return ['success' => false, 'message' => 'Invoice prorata sudah ada untuk periode ini'];
+            }
+
+            // Generate unique invoice number
+            $invoiceNo = $this->generateProrataInvoiceNumber($customerId);
+
+            // Prepare invoice data
+            $invoiceData = [
+                'customer_id' => $customerId,
+                'invoice_no' => $invoiceNo,
+                'periode' => $installMonth,
+                'bill' => $prorataCalculation['amount'],
+                'arrears' => 0,
+                'status' => 'unpaid',
+                'package' => ($paket->name ?? '') . ' | ' . ($paket->bandwidth_profile ?? '') . ' (Prorata)',
+                'additional_fee' => 0,
+                'discount' => 0,
+                'ppn' => 0,
+                'total' => $prorataCalculation['amount'],
+                'due_date' => date('Y-m-t', strtotime($installMonth)),
+                'created_at' => date('Y-m-d H:i:s'),
+                'is_prorata' => 1
+            ];
+
+            // Save invoice
+            if ($invoiceModel->insert($invoiceData)) {
+                log_message('info', 'Prorata invoice created successfully for customer: ' . $customerId);
+                return ['success' => true, 'message' => 'Invoice prorata berhasil dibuat'];
+            } else {
+                return ['success' => false, 'message' => 'Gagal menyimpan invoice prorata'];
+            }
+
+        } catch (\Exception $e) {
+            log_message('error', 'Error generating prorata invoice: ' . $e->getMessage());
+            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+        }
+    }
+
+    /**
+     * Calculate prorata amount based on installation date
+     */
+    private function calculateProrataAmount($installDate, $monthlyPrice)
+    {
+        $installDay = new \DateTime($installDate);
+        $endOfMonth = new \DateTime($installDay->format('Y-m-t')); // Last day of month
+        
+        // Calculate remaining days including installation date
+        $remainingDays = $installDay->diff($endOfMonth)->days + 1;
+        $totalDaysInMonth = $endOfMonth->format('j');
+
+        // Calculate prorata (round up)
+        $prorataAmount = ceil(($remainingDays / $totalDaysInMonth) * $monthlyPrice);
+
+        return [
+            'amount' => $prorataAmount,
+            'days' => $remainingDays,
+            'total_days' => $totalDaysInMonth,
+            'percentage' => ($remainingDays / $totalDaysInMonth) * 100
+        ];
+    }
+
+    /**
+     * Generate unique prorata invoice number
+     */
+    private function generateProrataInvoiceNumber($customerId)
+    {
+        $prefix = 'PRO';
+        $date = date('Ymd');
+        $random = strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 4));
+
+        return "{$prefix}-{$date}-{$customerId}-{$random}";
     }
 }
