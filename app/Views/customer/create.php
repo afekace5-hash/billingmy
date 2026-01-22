@@ -407,38 +407,63 @@
                                 </div>
                             </div>
 
-                            <!-- Biaya Instalasi Section -->
-                            <div class="row mt-4 mb-4">
-                                <div class="col-12">
-                                    <div class="card border-info">
-                                        <div class="card-header bg-info text-white">
-                                            <h5 class="card-title mb-0"><i class="bx bx-money me-2"></i>Biaya Instalasi (Opsional)</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6 mb-3">
-                                                    <label class="form-label">Biaya Instalasi</label>
-                                                    <input type="number" class="form-control" name="biaya_pasang" id="biaya_pasang" placeholder="Biaya Instalasi (Rp)" min="0" step="1000">
-                                                    <small class="text-muted">Masukkan jumlah biaya instalasi dalam Rupiah</small>
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label class="form-label">Biaya Tambahan Lainnya</label>
-                                                    <select class="form-select" name="additional_fee_id" id="additional_fee_id">
-                                                        <option value="">Pilih Biaya Tambahan (Opsional)</option>
-                                                    </select>
-                                                    <small class="text-muted">Pilih biaya tambahan jika ada</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Submit Button -->
                             <div class="row mt-4">
                                 <div class="col-12 text-end">
                                     <button type="submit" class="btn btn-primary px-5" id="submitForm">
                                         <i class="bx bx-check me-2"></i>Create
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biaya Instalasi Section (Separate from New Customer Form) -->
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h4 class="mb-0"><i class="bx bx-money me-2"></i>Biaya Instalasi & Tambahan</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="BiayaForm" method="POST" action="<?= site_url('customer/saveBiaya') ?>" class="form-horizontal">
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="card border-info">
+                                        <div class="card-header bg-info text-white">
+                                            <h5 class="card-title mb-0"><i class="bx bx-money me-2"></i>Biaya Instalasi</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <label class="form-label">Masukkan Biaya Instalasi (Rp)</label>
+                                            <input type="number" class="form-control" name="biaya_pasang" id="biaya_pasang" placeholder="Masukkan biaya instalasi" min="0" step="1000">
+                                            <small class="text-muted d-block mt-2">Masukkan jumlah biaya instalasi dalam Rupiah (opsional)</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card border-warning">
+                                        <div class="card-header bg-warning text-white">
+                                            <h5 class="card-title mb-0"><i class="bx bx-plus-circle me-2"></i>Biaya Tambahan</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <label class="form-label">Pilih Biaya Tambahan</label>
+                                            <select class="form-select" name="additional_fee_id" id="additional_fee_id">
+                                                <option value="">Pilih Biaya Tambahan (Opsional)</option>
+                                            </select>
+                                            <small class="text-muted d-block mt-2">Pilih biaya tambahan jika diperlukan</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12 text-end">
+                                    <button type="submit" class="btn btn-success px-5" id="submitBiayaForm">
+                                        <i class="bx bx-save me-2"></i>Simpan Biaya
                                     </button>
                                 </div>
                             </div>
@@ -1162,9 +1187,7 @@
         // Load biaya tambahan options
         function loadBiayaTambahanOptions() {
             const $select = $('#additional_fee_id');
-            const $spinner = document.getElementById('fee-load');
-
-            if ($spinner) $spinner.style.display = 'inline-block';
+            if (!$select.length) return;
 
             fetch('<?= site_url('biaya_tambahan/list') ?>')
                 .then(function(response) {
@@ -1172,8 +1195,6 @@
                     return response.json();
                 })
                 .then(function(response) {
-                    if ($spinner) $spinner.style.display = 'none';
-
                     // Clear existing options
                     $select.empty();
                     $select.append(new Option('Pilih Biaya Tambahan (Opsional)', '', true, true));
@@ -1197,7 +1218,6 @@
                     });
                 })
                 .catch(function(err) {
-                    if ($spinner) $spinner.style.display = 'none';
                     console.error('Gagal mengambil data biaya tambahan:', err);
                 });
         }
