@@ -87,6 +87,15 @@ $routes->group('admin/promos', ['filter' => 'isLoggedIn'], function ($routes) {
     $routes->post('toggle-active/(:num)', 'PromoController::toggleActive/$1');
 });
 
+// Invoice Discount Management Routes
+$routes->group('invoice-discount', ['filter' => 'isLoggedIn'], function ($routes) {
+    $routes->get('/', 'InvoiceDiscount::index');
+    $routes->post('data', 'InvoiceDiscount::data');
+    $routes->post('applyDiscount', 'InvoiceDiscount::applyDiscount');
+    $routes->post('removeDiscount', 'InvoiceDiscount::removeDiscount');
+    $routes->post('bulkDiscount', 'InvoiceDiscount::bulkDiscount');
+});
+
 // Customer Portal Routes - Subdomain Ready
 // Login routes (public access)
 $routes->group('customer-portal', function ($routes) {
