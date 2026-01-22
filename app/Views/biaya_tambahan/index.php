@@ -53,6 +53,7 @@
                                         <th>Kategori</th>
                                         <th>Jumlah</th>
                                         <th>Tanggal</th>
+                                        <th>Pelanggan</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -152,6 +153,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="customer_search" class="col-form-label">Pilih Pelanggan <span class="text-muted">(Opsional)</span></label>
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" id="customer_search" placeholder="Ketik minimal 2 karakter untuk mencari pelanggan..." autocomplete="off">
+                                    <div id="customer_dropdown" class="dropdown-menu w-100" style="max-height: 200px; overflow-y: auto; display: none;">
+                                        <!-- Results will be loaded here -->
+                                    </div>
+                                </div>
+                                <input type="hidden" id="selected_customers" name="customer_ids[]" multiple>
+                                <div id="selected_customers_display" class="mt-2">
+                                    <!-- Selected customers will be shown here -->
+                                </div>
+                                <small class="text-muted">Masukkan minimal 2 karakter untuk mencari. Klik pelanggan untuk menambah ke daftar.</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="saveBtn" class="btn btn-primary">Simpan</button>
@@ -162,10 +181,25 @@
     </div>
 </div>
 
+
+
 <script>
     let table;
 
     $(document).ready(function() {
+        // Simple delay to ensure DataTables is loaded from layout
+        setTimeout(function() {
+            if (typeof $.fn.DataTable !== 'undefined') {
+                console.log('DataTables is available');
+                initializePage();
+            } else {
+                console.error('DataTables not loaded from layout');
+                alert('DataTables library gagal dimuat. Silakan refresh halaman.');
+            }
+        }, 200);
+    });
+
+    function initializePage() {
         // Check if toastr is available
         if (typeof toastr === 'undefined') {
             console.error('Toastr is not loaded!');
@@ -204,6 +238,11 @@
         };
 
         // Initialize DataTable
+        if ($.fn.dataTable.isDataTable('#biayaTambahanTable')) {
+            console.log('DataTable already initialized, destroying first');
+            $('#biayaTambahanTable').DataTable().destroy();
+        }
+
         table = $('#biayaTambahanTable').DataTable({
             processing: true,
             serverSide: true,
@@ -263,6 +302,20 @@
                     name: 'tanggal'
                 },
                 {
+                    data: null,
+                    orderable: false,
+                    searchable: false,
+                    className: 'text-center',
+                    title: 'Pelanggan',
+                    render: function(data, type, row) {
+                        return `
+                            <button type="button" class="btn btn-info btn-sm" onclick="showCurrentAssignments(${row.id})">
+                                <i class="bx bx-users"></i> Lihat Pelanggan
+                            </button>
+                        `;
+                    }
+                },
+                {
                     data: 'status',
                     name: 'status',
                     className: 'text-center'
@@ -300,7 +353,7 @@
             let value = $(this).val();
             let isNegative = value.startsWith('-');
             let cleanValue = value.replace(/[^\d]/g, '');
-            
+
             if (cleanValue.length > 0) {
                 let formatted = parseInt(cleanValue).toLocaleString('id-ID');
                 if (isNegative) {
@@ -316,17 +369,17 @@
         $('#jumlah').on('keypress', function(e) {
             let charCode = (e.which) ? e.which : event.keyCode;
             let char = String.fromCharCode(charCode);
-            
+
             // Allow minus sign only at the beginning
             if (char === '-' && this.selectionStart === 0 && this.value.indexOf('-') === -1) {
                 return true;
             }
-            
+
             // Allow only numbers
             if (char.match(/[^0-9]/g)) {
                 return false;
             }
-            
+
             return true;
         });
 
@@ -335,8 +388,109 @@
             resetForm();
             $('#biayaTambahanModalLabel').html('Tambah Biaya Tambahan');
             $('#saveBtn').html('Simpan');
+            initializeCustomerSearch();
             $('#biayaTambahanModal').modal('show');
         });
+
+        // Initialize customer search functionality
+        function initializeCustomerSearch() {
+            $('#customer_search').off('input').on('input', function() {
+                const query = $(this).val();
+                if (query.length >= 2) {
+                    searchCustomers(query);
+                } else {
+                    $('#customer_dropdown').hide();
+                }
+            });
+
+            // Hide dropdown when clicking outside
+            $(document).off('click.customerSearch').on('click.customerSearch', function(e) {
+                if (!$(e.target).closest('#customer_search, #customer_dropdown').length) {
+                    $('#customer_dropdown').hide();
+                }
+            });
+        }
+
+        // Search customers with query
+        function searchCustomers(query) {
+            $.ajax({
+                url: '<?= base_url('biaya_tambahan/searchCustomers') ?>',
+                type: 'GET',
+                data: {
+                    q: query
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success && response.data.length > 0) {
+                        let html = '';
+                        response.data.forEach(function(customer) {
+                            html += `<a class="dropdown-item customer-option" href="#" data-id="${customer.id}" data-name="${customer.nama_customer}" data-username="${customer.username}">
+                                <strong>${customer.nama_customer}</strong><br>
+                                <small class="text-muted">${customer.username}</small>
+                            </a>`;
+                        });
+                        $('#customer_dropdown').html(html).show();
+                    } else {
+                        $('#customer_dropdown').html('<div class="dropdown-item text-muted">Tidak ada pelanggan ditemukan</div>').show();
+                    }
+                },
+                error: function() {
+                    $('#customer_dropdown').html('<div class="dropdown-item text-danger">Error memuat data</div>').show();
+                }
+            });
+        }
+
+        // Handle customer selection
+        $(document).on('click', '.customer-option', function(e) {
+            e.preventDefault();
+            const customerId = $(this).data('id');
+            const customerName = $(this).data('name');
+            const customerUsername = $(this).data('username');
+
+            addSelectedCustomer(customerId, customerName, customerUsername);
+            $('#customer_search').val('');
+            $('#customer_dropdown').hide();
+        });
+
+        // Add customer to selected list
+        function addSelectedCustomer(id, name, username) {
+            // Check if already selected
+            if ($(`#selected_customers_display [data-customer-id="${id}"]`).length > 0) {
+                return;
+            }
+
+            const badge = `<span class="badge bg-primary me-2 mb-1 p-2" data-customer-id="${id}">
+                ${name} - ${username}
+                <button type="button" class="btn-close btn-close-white ms-2" onclick="removeSelectedCustomer(${id})" style="font-size: 0.7em;"></button>
+            </span>`;
+
+            $('#selected_customers_display').append(badge);
+
+            // Update hidden input
+            updateSelectedCustomersInput();
+        }
+
+        // Remove selected customer
+        window.removeSelectedCustomer = function(customerId) {
+            $(`#selected_customers_display [data-customer-id="${customerId}"]`).remove();
+            updateSelectedCustomersInput();
+        };
+
+        // Update hidden input with selected customer IDs
+        function updateSelectedCustomersInput() {
+            const selectedIds = [];
+            $('#selected_customers_display [data-customer-id]').each(function() {
+                selectedIds.push($(this).data('customer-id'));
+            });
+
+            // Clear existing hidden inputs
+            $('input[name="customer_ids[]"]').remove();
+
+            // Add new hidden inputs
+            selectedIds.forEach(function(id) {
+                $('#selected_customers').after(`<input type="hidden" name="customer_ids[]" value="${id}">`);
+            });
+        }
 
         // Reset button ketika modal ditutup
         $('#biayaTambahanModal').on('hidden.bs.modal', function() {
@@ -362,7 +516,14 @@
                     $('#tanggal').val(data.tanggal);
                     $('#status').val(data.status);
                     $('#deskripsi').val(data.deskripsi);
-                    $('#biayaTambahanModal').modal('show');
+
+                    // Load current customer assignments for edit
+                    loadCurrentAssignments(id);
+
+                    // Show in existing form (no modal needed)
+                    $('html, body').animate({
+                        scrollTop: $('#biayaTambahanCard').offset().top - 20
+                    }, 500);
                 } else {
                     Swal.fire('Error', response.message, 'error');
                 }
@@ -370,6 +531,30 @@
                 Swal.fire('Error', 'Gagal mengambil data', 'error');
             });
         });
+
+        // Load current assignments untuk edit form
+        function loadCurrentAssignments(biayaId) {
+            $.ajax({
+                url: '<?= base_url('biaya_tambahan/getAssignedCustomers') ?>',
+                type: 'GET',
+                data: {
+                    biaya_tambahan_id: biayaId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Clear existing selected customers
+                        $('#selected_customers_display').empty();
+                        $('input[name="customer_ids[]"]').remove();
+
+                        // Add each assigned customer as selected badge
+                        response.data.forEach(function(customer) {
+                            addSelectedCustomer(customer.id, customer.nama_customer);
+                        });
+                    }
+                }
+            });
+        }
 
         // Save biaya tambahan
         $('#biayaTambahanForm').on('submit', async function(e) {
@@ -389,11 +574,11 @@
                 let jumlahValue = $('#jumlah').val();
                 let isNegative = jumlahValue.startsWith('-');
                 let cleanValue = jumlahValue.replace(/[^\d]/g, '');
-                
+
                 if (isNegative) {
                     cleanValue = '-' + cleanValue;
                 }
-                
+
                 formData = formData.replace(/jumlah=[^&]*/, 'jumlah=' + cleanValue);
 
                 const response = await fetch(url, {
@@ -484,6 +669,12 @@
             $('#kategori').val('').trigger('change');
             $('#tanggal').val('<?= date('Y-m-d') ?>');
 
+            // Clear customer search
+            $('#customer_search').val('');
+            $('#selected_customers_display').empty();
+            $('input[name="customer_ids[]"]').remove();
+            $('#customer_dropdown').hide();
+
             // Reset button state
             $('#saveBtn').html('Simpan');
             $('#saveBtn').prop('disabled', false);
@@ -503,7 +694,172 @@
                 $('#error_' + field).html(message);
             });
         }
-    });
+
+        // Load customer options untuk semua dropdown ketika DataTable selesai di-load
+        table.on('draw.dt', function() {
+            loadAllCustomerOptions();
+        });
+
+        // Load customer options untuk semua select
+        function loadAllCustomerOptions() {
+            $.ajax({
+                url: '<?= base_url('biaya_tambahan/getCustomerOptions') ?>',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        let options = '<option value="">-- Pilih Pelanggan --</option>';
+                        response.data.forEach(function(customer) {
+                            options += `<option value="${customer.id}">${customer.nama_customer} - ${customer.username}</option>`;
+                        });
+
+                        $('.customer-select').each(function() {
+                            let biayaId = $(this).data('biaya-id');
+                            $(this).html(options);
+
+                            // Load current assignments
+                            loadCurrentAssignments(biayaId, $(this));
+                        });
+                    }
+                },
+                error: function() {
+                    $('.customer-select').html('<option value="">Error memuat data</option>');
+                }
+            });
+        }
+
+        // Load assignment saat ini untuk biaya tertentu
+        function loadCurrentAssignments(biayaId, selectElement) {
+            $.ajax({
+                url: '<?= base_url('biaya_tambahan/getAssignedCustomers') ?>',
+                type: 'GET',
+                data: {
+                    biaya_tambahan_id: biayaId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        response.data.forEach(function(customer) {
+                            selectElement.find(`option[value="${customer.id}"]`).prop('selected', true);
+                        });
+                    }
+                }
+            });
+        }
+
+        // Simpan assignment pelanggan
+        window.saveCustomerAssignment = function(biayaId) {
+            let selectElement = $(`.customer-select[data-biaya-id="${biayaId}"]`);
+            let selectedCustomers = selectElement.val();
+
+            if (!selectedCustomers || selectedCustomers.length === 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Perhatian',
+                    text: 'Pilih minimal satu pelanggan'
+                });
+                return;
+            }
+
+            // Show loading on button
+            let saveBtn = selectElement.siblings('.mt-1').find('button:first');
+            let originalHtml = saveBtn.html();
+            saveBtn.prop('disabled', true).html('<i class="bx bx-loader bx-spin"></i> Saving...');
+
+            $.ajax({
+                url: '<?= base_url('biaya_tambahan/assignCustomers') ?>',
+                type: 'POST',
+                data: {
+                    biaya_tambahan_id: biayaId,
+                    customer_ids: selectedCustomers,
+                    '<?= csrf_token() ?>': '<?= csrf_hash() ?>'
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            text: response.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: response.message || 'Terjadi kesalahan'
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'Terjadi kesalahan pada server'
+                    });
+                },
+                complete: function() {
+                    saveBtn.prop('disabled', false).html(originalHtml);
+                }
+            });
+        }
+
+        // Lihat assignment saat ini
+        window.showCurrentAssignments = function(biayaId) {
+            $.ajax({
+                url: '<?= base_url('biaya_tambahan/getAssignedCustomers') ?>',
+                type: 'GET',
+                data: {
+                    biaya_tambahan_id: biayaId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        let html = '';
+                        if (response.data.length > 0) {
+                            html += '<div class="table-responsive"><table class="table table-striped table-sm">';
+                            html += '<thead><tr><th>Nama</th><th>Username</th><th>Status</th></tr></thead><tbody>';
+
+                            response.data.forEach(function(customer) {
+                                let statusClass = customer.is_active == '1' ? 'success' : 'danger';
+                                let statusText = customer.is_active == '1' ? 'Aktif' : 'Non-aktif';
+                                html += `<tr>
+                                    <td>${customer.nama_customer}</td>
+                                    <td>${customer.username}</td>
+                                    <td><span class="badge bg-${statusClass}">${statusText}</span></td>
+                                </tr>`;
+                            });
+                            html += '</tbody></table></div>';
+                        } else {
+                            html = '<div class="alert alert-info text-center">Belum ada pelanggan yang di-assign</div>';
+                        }
+
+                        Swal.fire({
+                            title: 'Pelanggan Terdaftar',
+                            html: html,
+                            width: '600px',
+                            showConfirmButton: true,
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.message || 'Gagal memuat data'
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat memuat data'
+                    });
+                }
+            });
+        }
+    } // End of initializePage function
 </script>
 
 <style>
@@ -514,6 +870,67 @@
     .table th,
     .table td {
         white-space: nowrap;
+    }
+
+    .customer-assignment {
+        min-width: 280px;
+        padding: 8px;
+    }
+
+    .customer-select {
+        font-size: 0.875rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .customer-select:focus {
+        border-color: #4285F4;
+        box-shadow: 0 0 0 0.2rem rgba(66, 133, 244, 0.25);
+    }
+
+    .btn-xs {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        line-height: 1.25;
+    }
+
+    .customer-assignment .mt-1 {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+    }
+
+    /* Customer search styles */
+    #customer_dropdown {
+        border: 1px solid #ddd;
+        border-radius: 0.375rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        z-index: 1050;
+    }
+
+    #customer_dropdown .dropdown-item {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-bottom: 1px solid #f8f9fa;
+    }
+
+    #customer_dropdown .dropdown-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    #customer_dropdown .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    #selected_customers_display .badge {
+        font-size: 0.85em;
+        position: relative;
+    }
+
+    #selected_customers_display .btn-close {
+        padding: 0;
+        margin: 0;
+        font-size: 0.7em;
     }
 </style>
 

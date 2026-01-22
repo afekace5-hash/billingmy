@@ -28,9 +28,9 @@ $output['files_check'] = [
 
 // Get file modification time
 $output['file_modified'] = [
-    'GenerateInvoices.php' => file_exists(__DIR__ . '/app/Controllers/GenerateInvoices.php') ? 
+    'GenerateInvoices.php' => file_exists(__DIR__ . '/app/Controllers/GenerateInvoices.php') ?
         date('Y-m-d H:i:s', filemtime(__DIR__ . '/app/Controllers/GenerateInvoices.php')) : 'not found',
-    'BiayaTambahan.php' => file_exists(__DIR__ . '/app/Controllers/BiayaTambahan.php') ? 
+    'BiayaTambahan.php' => file_exists(__DIR__ . '/app/Controllers/BiayaTambahan.php') ?
         date('Y-m-d H:i:s', filemtime(__DIR__ . '/app/Controllers/BiayaTambahan.php')) : 'not found'
 ];
 
@@ -38,4 +38,3 @@ $output['server_time'] = date('Y-m-d H:i:s');
 $output['webhook_status'] = 'Webhook working - this endpoint shows server is updated';
 
 echo json_encode($output, JSON_PRETTY_PRINT);
-?>

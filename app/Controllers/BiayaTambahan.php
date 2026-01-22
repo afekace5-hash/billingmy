@@ -157,7 +157,7 @@ class BiayaTambahan extends BaseController
         $rules = [
             'kategori' => 'required|min_length[3]|max_length[100]',
             'nama_biaya' => 'required|min_length[3]|max_length[255]',
-            'jumlah' => 'required|numeric|greater_than[0]',
+            'jumlah' => 'required|numeric',
             'tanggal' => 'required|valid_date',
             'deskripsi' => 'permit_empty|max_length[500]',
             'status' => 'required|in_list[0,1]'
@@ -181,12 +181,18 @@ class BiayaTambahan extends BaseController
                 'created_at' => date('Y-m-d H:i:s')
             ];
 
-            $this->biayaTambahanModel->insert($data);
+            $biayaTambahanId = $this->biayaTambahanModel->insert($data);
+
+            // Handle customer assignment
+            $customerIds = $this->request->getPost('customer_ids');
+            if (!empty($customerIds) && is_array($customerIds)) {
+                $this->assignCustomersToNewBiayaTambahan($biayaTambahanId, $customerIds);
+            }
 
             return $this->response->setJSON([
                 'status' => 'success',
                 'title' => 'Berhasil',
-                'message' => 'Biaya tambahan berhasil ditambahkan'
+                'message' => 'Biaya tambahan berhasil ditambahkan' . (empty($customerIds) ? '' : ' dan pelanggan berhasil di-assign')
             ]);
         } catch (\Exception $e) {
             return $this->response->setJSON([
@@ -194,6 +200,21 @@ class BiayaTambahan extends BaseController
                 'title' => 'Gagal',
                 'message' => 'Gagal menambahkan biaya tambahan: ' . $e->getMessage()
             ])->setStatusCode(500);
+        }
+    }
+
+    private function assignCustomersToNewBiayaTambahan($biayaTambahanId, $customerIds)
+    {
+        $customerBiayaTambahanModel = model('CustomerBiayaTambahanModel');
+
+        foreach ($customerIds as $customerId) {
+            if (!empty($customerId)) {
+                $customerBiayaTambahanModel->insert([
+                    'customer_id' => $customerId,
+                    'biaya_tambahan_id' => $biayaTambahanId,
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
+            }
         }
     }
 
@@ -226,7 +247,7 @@ class BiayaTambahan extends BaseController
         $rules = [
             'kategori' => 'required|min_length[3]|max_length[100]',
             'nama_biaya' => 'required|min_length[3]|max_length[255]',
-            'jumlah' => 'required|numeric|greater_than[0]',
+            'jumlah' => 'required|numeric',
             'tanggal' => 'required|valid_date',
             'deskripsi' => 'permit_empty|max_length[500]',
             'status' => 'required|in_list[0,1]'
@@ -251,6 +272,10 @@ class BiayaTambahan extends BaseController
             ];
 
             $this->biayaTambahanModel->update($id, $data);
+
+            // Handle customer assignment update
+            $customerIds = $this->request->getPost('customer_ids');
+            $this->updateCustomerAssignments($id, $customerIds);
 
             return $this->response->setJSON([
                 'status' => 'success',
@@ -282,6 +307,13 @@ class BiayaTambahan extends BaseController
                 ])->setStatusCode(404);
             }
 
+            // Delete related customer assignments first
+            $db = \Config\Database::connect();
+            $db->table('customer_biaya_tambahan')
+                ->where('biaya_tambahan_id', $id)
+                ->delete();
+
+            // Then delete the main biaya tambahan record
             $this->biayaTambahanModel->delete($id);
 
             return $this->response->setJSON([
@@ -294,6 +326,208 @@ class BiayaTambahan extends BaseController
                 'status' => 'error',
                 'title' => 'Gagal',
                 'message' => 'Gagal menghapus biaya tambahan: ' . $e->getMessage()
+            ])->setStatusCode(500);
+        }
+    }
+
+    private function updateCustomerAssignments($biayaTambahanId, $customerIds)
+    {
+        $db = \Config\Database::connect();
+
+        // Delete existing assignments with proper WHERE condition
+        if (!empty($biayaTambahanId)) {
+            $db->table('customer_biaya_tambahan')
+                ->where('biaya_tambahan_id', $biayaTambahanId)
+                ->delete();
+        }
+
+        // Insert new assignments
+        if (!empty($customerIds) && is_array($customerIds)) {
+            foreach ($customerIds as $customerId) {
+                if (!empty($customerId)) {
+                    $db->table('customer_biaya_tambahan')->insert([
+                        'created_at' => date('Y-m-d H:i:s')
+                    ]);
+                }
+            }
+        }
+    }
+
+    /**
+     * Search customers by query
+     */
+    public function searchCustomers()
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['error' => 'Invalid request'])->setStatusCode(400);
+        }
+
+        $query = $this->request->getVar('q');
+
+        if (strlen($query) < 2) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Query terlalu pendek'
+            ]);
+        }
+
+        try {
+            $customerModel = model('CustomerModel');
+            $customers = $customerModel->select('id_customers, nama_pelanggan, nomor_layanan')
+                ->where('status_layanan', 'Active')
+                ->groupStart()
+                ->like('nama_pelanggan', $query)
+                ->orLike('nomor_layanan', $query)
+                ->groupEnd()
+                ->orderBy('nama_pelanggan', 'ASC')
+                ->limit(10) // Limit hasil untuk performance
+                ->findAll();
+
+            $options = [];
+            foreach ($customers as $customer) {
+                $options[] = [
+                    'id' => $customer['id_customers'],
+                    'nama_customer' => $customer['nama_pelanggan'],
+                    'username' => $customer['nomor_layanan']
+                ];
+            }
+
+            return $this->response->setJSON([
+                'success' => true,
+                'data' => $options
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Gagal mencari customer: ' . $e->getMessage()
+            ])->setStatusCode(500);
+        }
+    }
+
+    /**
+     * Get customer options for assignment
+     */
+    public function getCustomerOptions()
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['error' => 'Invalid request'])->setStatusCode(400);
+        }
+
+        try {
+            $customerModel = model('CustomerModel');
+            $customers = $customerModel->select('id_customers, nama_pelanggan, nomor_layanan')
+                ->where('status_layanan', 'Active')
+                ->orderBy('nama_pelanggan', 'ASC')
+                ->findAll();
+
+            $options = [];
+            foreach ($customers as $customer) {
+                $options[] = [
+                    'id' => $customer['id_customers'],
+                    'nama_customer' => $customer['nama_pelanggan'],
+                    'username' => $customer['nomor_layanan']
+                ];
+            }
+
+            return $this->response->setJSON([
+                'success' => true,
+                'data' => $options
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Gagal mengambil data customer: ' . $e->getMessage()
+            ])->setStatusCode(500);
+        }
+    }
+
+    /**
+     * Assign customers to biaya tambahan
+     */
+    public function assignCustomers()
+    {
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['error' => 'Invalid request'])->setStatusCode(400);
+        }
+
+        try {
+            $biayaTambahanId = $this->request->getPost('biaya_tambahan_id');
+            $customerIds = $this->request->getPost('customer_ids');
+
+            if (!$biayaTambahanId) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'ID Biaya tambahan tidak valid'
+                ])->setStatusCode(400);
+            }
+
+            // Validate biaya tambahan exists
+            $biayaTambahan = $this->biayaTambahanModel->find($biayaTambahanId);
+            if (!$biayaTambahan) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Biaya tambahan tidak ditemukan'
+                ])->setStatusCode(404);
+            }
+
+            $customerBiayaTambahanModel = model('CustomerBiayaTambahanModel');
+
+            // Remove existing assignments for this biaya tambahan
+            $customerBiayaTambahanModel->where('biaya_tambahan_id', $biayaTambahanId)->delete();
+
+            $assignedCount = 0;
+            if (!empty($customerIds) && is_array($customerIds)) {
+                $data = [];
+                foreach ($customerIds as $customerId) {
+                    $data[] = [
+                        'customer_id' => $customerId,
+                        'biaya_tambahan_id' => $biayaTambahanId,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ];
+                    $assignedCount++;
+                }
+
+                if (!empty($data)) {
+                    $customerBiayaTambahanModel->insertBatch($data);
+                }
+            }
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => "Berhasil assign {$assignedCount} customer ke biaya tambahan: {$biayaTambahan['nama_biaya']}"
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Gagal assign customer: ' . $e->getMessage()
+            ])->setStatusCode(500);
+        }
+    }
+
+    /**
+     * Get assigned customers for a biaya tambahan
+     */
+    public function getAssignedCustomers()
+    {
+        $biayaTambahanId = $this->request->getVar('biaya_tambahan_id');
+
+        if (!$this->request->isAJAX()) {
+            return $this->response->setJSON(['error' => 'Invalid request'])->setStatusCode(400);
+        }
+
+        try {
+            $customerBiayaTambahanModel = model('CustomerBiayaTambahanModel');
+            $assignedCustomers = $customerBiayaTambahanModel->getCustomersByBiayaTambahan($biayaTambahanId);
+
+            return $this->response->setJSON([
+                'success' => true,
+                'data' => $assignedCustomers
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Gagal mengambil data customer: ' . $e->getMessage()
             ])->setStatusCode(500);
         }
     }

@@ -255,6 +255,12 @@ $routes->group('biaya_tambahan', ['filter' => 'isLoggedIn'], function ($routes) 
     $routes->get('edit/(:num)', 'BiayaTambahan::edit/$1');
     $routes->post('update/(:num)', 'BiayaTambahan::update/$1');
     $routes->post('delete/(:num)', 'BiayaTambahan::delete/$1');
+
+    // Customer assignment endpoints
+    $routes->get('getCustomerOptions', 'BiayaTambahan::getCustomerOptions');
+    $routes->get('searchCustomers', 'BiayaTambahan::searchCustomers');
+    $routes->post('assignCustomers', 'BiayaTambahan::assignCustomers');
+    $routes->get('getAssignedCustomers/(:num)', 'BiayaTambahan::getAssignedCustomers/$1');
 });
 
 // MikroTik Profile Management Routes

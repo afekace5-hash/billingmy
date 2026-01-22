@@ -292,7 +292,9 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s;
+  transition:
+    width 0.3s,
+    height 0.3s;
 }
 
 .btn-enhanced:hover::before {
@@ -574,31 +576,6 @@
   transition: all 0.3s ease;
   border-width: 1.5px;
   font-weight: 500;
-}
-
-/* Dropdown menu enhancement */
-.dropdown-menu {
-  border: none;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  border-radius: 10px;
-  padding: 0.5rem 0;
-}
-
-.dropdown-item {
-  padding: 0.75rem 1.5rem;
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  margin: 0 0.5rem;
-}
-
-.dropdown-item:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  transform: translateX(5px);
-}
-
-.dropdown-item i {
-  width: 20px;
 }
 
 /* Profile button enhancement */
