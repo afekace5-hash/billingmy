@@ -468,10 +468,10 @@ class Installation extends BaseController
             // Calculate additional fees and discount from customer biaya tambahan
             $customerBiayaTambahanModel = model('CustomerBiayaTambahanModel');
             $biayaTambahanData = $customerBiayaTambahanModel->getBiayaTambahanByCustomer($customerId);
-            
+
             $additional_fee = 0;
             $discount = 0;
-            
+
             foreach ($biayaTambahanData as $biaya) {
                 $jumlah = (float)$biaya['jumlah'];
                 if ($jumlah > 0) {
