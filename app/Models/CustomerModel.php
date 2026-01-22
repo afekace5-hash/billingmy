@@ -60,6 +60,12 @@ class CustomerModel extends Model
         'original_profile',
         'session_timeout',
         'idle_timeout',
+        'status_installation',
+        'status_layanan',
+        'tgl_aktivasi',
+        'payment_method',
+        'pemegang_ikr',
+        'branch_id',
         // 'pppoe_odp', // Commented out as this column might not exist yet
     ];
 

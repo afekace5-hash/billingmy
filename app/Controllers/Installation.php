@@ -335,7 +335,8 @@ class Installation extends BaseController
      */
     public function historyList()
     {
-        // Get customers with completed installation (status_installation = 'Installed')
+        // Get customers with completed installation (status_installation = 'Installed' OR tgl_aktivasi is not null)
+        // This ensures customers activated through any method are shown
         $data['history'] = $this->customerModel
             ->select('customers.*, 
                       customers.nama_pelanggan as nama,
@@ -344,7 +345,7 @@ class Installation extends BaseController
             ->join('lokasi_server', 'lokasi_server.id_lokasi = customers.id_lokasi_server', 'left')
             ->join('branches', 'branches.id = customers.branch_id', 'left')
             ->join('package_profiles', 'package_profiles.id = customers.id_paket', 'left')
-            ->where('customers.status_installation', 'Installed')
+            ->where('(customers.status_installation = "Installed" OR customers.tgl_aktivasi IS NOT NULL)', null, false)
             ->orderBy('customers.tgl_aktivasi', 'DESC')
             ->findAll();
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GitHub Webhook Auto Deploy
  * Place this file at: /www/wwwroot/epay.difihome.my.id/deploy.php
@@ -12,7 +13,7 @@
  */
 
 // SECURITY: Change this to your webhook secret from GitHub
-$webhook_secret = 'your-webhook-secret-change-me';
+$webhook_secret = 'difihome-epay-webhook-secret';
 
 // Get the payload
 $payload = file_get_contents('php://input');
@@ -67,4 +68,3 @@ echo json_encode([
     'message' => implode("\n", $output),
     'timestamp' => date('Y-m-d H:i:s')
 ]);
-?>
