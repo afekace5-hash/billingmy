@@ -63,7 +63,6 @@ class CustomerModel extends Model
         'status_installation',
         'status_layanan',
         'tgl_aktivasi',
-        'pemegang_ikr',
         'branch_id',
         // 'pppoe_odp', // Commented out as this column might not exist yet
     ];
