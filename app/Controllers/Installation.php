@@ -465,6 +465,27 @@ class Installation extends BaseController
             // Generate unique invoice number
             $invoiceNo = $this->generateProrataInvoiceNumber($customerId);
 
+            // Calculate additional fees and discount from customer biaya tambahan
+            $customerBiayaTambahanModel = model('CustomerBiayaTambahanModel');
+            $biayaTambahanData = $customerBiayaTambahanModel->getBiayaTambahanByCustomer($customerId);
+            
+            $additional_fee = 0;
+            $discount = 0;
+            
+            foreach ($biayaTambahanData as $biaya) {
+                $jumlah = (float)$biaya['jumlah'];
+                if ($jumlah > 0) {
+                    // Positive amount = additional fee (prorata per day)
+                    $additional_fee += ($jumlah * $prorataCalculation['days'] / $prorataCalculation['total_days']);
+                } else {
+                    // Negative amount = discount (prorata per day, make it positive)
+                    $discount += abs($jumlah * $prorataCalculation['days'] / $prorataCalculation['total_days']);
+                }
+            }
+
+            // Calculate total amount
+            $totalAmount = $prorataCalculation['amount'] + $additional_fee - $discount;
+
             // Prepare invoice data
             $invoiceData = [
                 'customer_id' => $customerId,
@@ -474,10 +495,10 @@ class Installation extends BaseController
                 'arrears' => 0,
                 'status' => 'unpaid',
                 'package' => ($paket->name ?? '') . ' | ' . ($paket->bandwidth_profile ?? '') . ' (Prorata)',
-                'additional_fee' => 0,
-                'discount' => 0,
+                'additional_fee' => round($additional_fee, 2),
+                'discount' => round($discount, 2),
                 'ppn' => 0,
-                'total' => $prorataCalculation['amount'],
+                'total' => round($totalAmount, 2),
                 'due_date' => date('Y-m-t', strtotime($installMonth)),
                 'created_at' => date('Y-m-d H:i:s'),
                 'is_prorata' => 1

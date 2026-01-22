@@ -91,6 +91,7 @@
                                     <option value="Biaya Operasional">Biaya Operasional</option>
                                     <option value="Biaya Maintenance">Biaya Maintenance</option>
                                     <option value="Biaya Administrasi">Biaya Administrasi</option>
+                                    <option value="Diskon">Diskon</option>
                                     <option value="Lainnya">Lainnya</option>
                                 </select>
                                 <div class="invalid-feedback" id="error_kategori"></div>
@@ -109,8 +110,12 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="jumlah" class="col-form-label">Jumlah <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="0">
+                                <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="0 (negatif untuk diskon)">
                                 <div class="invalid-feedback" id="error_jumlah"></div>
+                                <small class="text-muted">
+                                    Masukkan jumlah positif untuk biaya tambahan, negatif untuk diskon.<br>
+                                    Contoh: 50000 = Biaya Tambahan Rp 50.000, -30000 = Diskon Rp 30.000
+                                </small>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -243,7 +248,15 @@
                 {
                     data: 'jumlah',
                     name: 'jumlah',
-                    className: 'text-end'
+                    className: 'text-end',
+                    render: function(data, type, row) {
+                        const amount = parseInt(data);
+                        if (amount < 0) {
+                            return '<span class="text-success">Rp ' + Math.abs(amount).toLocaleString('id-ID') + ' (Diskon)</span>';
+                        } else {
+                            return '<span class="text-primary">Rp ' + amount.toLocaleString('id-ID') + '</span>';
+                        }
+                    }
                 },
                 {
                     data: 'tanggal',
@@ -282,21 +295,39 @@
             });
         }
 
-        // Format currency input
+        // Format currency input (allow negative numbers)
         $("#jumlah").on('keyup', function() {
-            let value = $(this).val().replace(/[^\d]/g, '');
-            if (value.length > 0) {
-                let formatted = parseInt(value).toLocaleString('id-ID');
+            let value = $(this).val();
+            let isNegative = value.startsWith('-');
+            let cleanValue = value.replace(/[^\d]/g, '');
+            
+            if (cleanValue.length > 0) {
+                let formatted = parseInt(cleanValue).toLocaleString('id-ID');
+                if (isNegative) {
+                    formatted = '-' + formatted;
+                }
                 $(this).val(formatted);
+            } else if (isNegative && cleanValue.length === 0) {
+                $(this).val('-');
             }
         });
 
-        // Only allow numbers in jumlah input
+        // Allow numbers and minus sign in jumlah input
         $('#jumlah').on('keypress', function(e) {
             let charCode = (e.which) ? e.which : event.keyCode;
-            if (String.fromCharCode(charCode).match(/[^0-9]/g)) {
+            let char = String.fromCharCode(charCode);
+            
+            // Allow minus sign only at the beginning
+            if (char === '-' && this.selectionStart === 0 && this.value.indexOf('-') === -1) {
+                return true;
+            }
+            
+            // Allow only numbers
+            if (char.match(/[^0-9]/g)) {
                 return false;
             }
+            
+            return true;
         });
 
         // Create new biaya tambahan
@@ -327,7 +358,7 @@
                     $('#biaya_id').val(data.id);
                     $('#kategori').val(data.kategori).trigger('change');
                     $('#nama_biaya').val(data.nama_biaya);
-                    $('#jumlah').val(parseInt(data.jumlah).toLocaleString('id-ID'));
+                    $('#jumlah').val(data.jumlah < 0 ? data.jumlah : parseInt(data.jumlah).toLocaleString('id-ID'));
                     $('#tanggal').val(data.tanggal);
                     $('#status').val(data.status);
                     $('#deskripsi').val(data.deskripsi);
@@ -355,8 +386,15 @@
 
             try {
                 let formData = $(this).serialize();
-                let jumlahValue = $('#jumlah').val().replace(/[^\d]/g, '');
-                formData = formData.replace(/jumlah=[^&]*/, 'jumlah=' + jumlahValue);
+                let jumlahValue = $('#jumlah').val();
+                let isNegative = jumlahValue.startsWith('-');
+                let cleanValue = jumlahValue.replace(/[^\d]/g, '');
+                
+                if (isNegative) {
+                    cleanValue = '-' + cleanValue;
+                }
+                
+                formData = formData.replace(/jumlah=[^&]*/, 'jumlah=' + cleanValue);
 
                 const response = await fetch(url, {
                     method: 'POST',

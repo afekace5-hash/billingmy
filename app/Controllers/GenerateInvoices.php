@@ -122,6 +122,24 @@ class GenerateInvoices extends Controller
                 $bill = $paket['price'] ?? 0;
                 $package = ($paket['name'] ?? '') . ' | ' . ($paket['bandwidth_profile'] ?? '');
 
+                // Calculate additional fees and discount from customer biaya tambahan
+                $customerBiayaTambahanModel = model('CustomerBiayaTambahanModel');
+                $biayaTambahanData = $customerBiayaTambahanModel->getBiayaTambahanByCustomer($cust['id_customers']);
+                
+                $additional_fee = 0;
+                $discount = 0;
+                
+                foreach ($biayaTambahanData as $biaya) {
+                    $jumlah = (float)$biaya['jumlah'];
+                    if ($jumlah > 0) {
+                        // Positive amount = additional fee
+                        $additional_fee += $jumlah;
+                    } else {
+                        // Negative amount = discount (make it positive for discount field)
+                        $discount += abs($jumlah);
+                    }
+                }
+
                 // Generate nomor invoice unik
                 $invoice_no = $this->generateInvoiceNumber($cust['id_customers']);
 
@@ -133,8 +151,8 @@ class GenerateInvoices extends Controller
                     'arrears' => 0,
                     'status' => 'unpaid',
                     'package' => $package,
-                    'additional_fee' => 0,
-                    'discount' => 0,
+                    'additional_fee' => $additional_fee,
+                    'discount' => $discount,
                     'server' => $cust['id_lokasi_server'] ?? null,
                     'due_date' => $cust['tgl_tempo'] ?? 15,
                     'district' => $cust['district'] ?? null,
